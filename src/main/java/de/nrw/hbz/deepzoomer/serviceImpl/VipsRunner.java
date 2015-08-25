@@ -36,15 +36,14 @@ public class VipsRunner {
 		// Complete execute String 
 		String programPath = new String("vips"); 
 		String defaultParams = new String("dzsave " 
-				 + "--suffix .jpeg[90] "
 				);
 		String executeString = new String(programPath + " " 
 				+ defaultParams 
-				+ paramString 
-				+ " " + Configuration.getResultDirPath() + fileName 
-				+ " " + Configuration.getTempDirPath() + fileName); 
+				+ " " + Configuration.getTempDirPath() + fileName 
+				+ " " + Configuration.getResultDirPath() + fileName
+				); 
 
-		log.debug("The execute String: " + executeString);
+		log.info("The execute String: " + executeString);
 		try{
 			//Process proc = java.lang.Runtime.getRuntime().exec("echo " + executeString);
 			Process proc = java.lang.Runtime.getRuntime().exec(executeString);
@@ -81,4 +80,4 @@ public class VipsRunner {
 		return exitStateStr;
 	}
 }
-}
+

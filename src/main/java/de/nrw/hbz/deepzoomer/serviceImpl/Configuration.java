@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import javax.servlet.ServletException;
+//import javax.servlet.ServletException;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
@@ -50,10 +50,10 @@ public class Configuration {
 	private static void setDefaultProp(){
 		defProp.setProperty("host", "nyx.hbz-nrw.de");
 		defProp.setProperty("port", "8080");
-		defProp.setProperty("path", "PdfAConverter");
+		defProp.setProperty("path", "deepzoom");
 		defProp.setProperty("tempDir", "temp");
 		defProp.setProperty("resultDir", "result");
-		defProp.setProperty("userDir", "ulbm");
+		defProp.setProperty("userDir", "all");
 		defProp.setProperty("workingDir", "/srv/tomcat6/webapps/");
 		
 		
@@ -87,11 +87,12 @@ public class Configuration {
 	public static void loadConfigurationFile(){
         sysProp = new Properties(defProp);
         try {
-            InputStream propStream = new Configuration().getClass().getResourceAsStream("/conf/pdfaService.cfg");
+            InputStream propStream = new Configuration().getClass().getResourceAsStream("/conf/deepzoomer.cfg");
             if (propStream == null) {
-                throw new IOException("Error loading configuration: /conf/pdfa.conf not found in classpath");
+                throw new IOException("Error loading configuration: /conf/deepzoomer.conf not found in classpath");
             }else{
                 sysProp.load(propStream);
+                System.out.println("loaded config file");
             }
         } catch (Exception e) {
         	log.warn(e);

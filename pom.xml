@@ -8,8 +8,46 @@
 
 <build>
   <plugins>
-	
-	
+      <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-compiler-plugin</artifactId>
+         <version>2.3.2</version>
+         <configuration>
+            <source>1.7</source>
+            <target>1.7</target>
+         </configuration>
+      </plugin>
+
+		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-assembly-plugin</artifactId>
+  			<version>2.2-beta-5</version>
+  			<configuration>
+  				<descriptorRefs>
+  					<descriptorRef>jar-with-dependencies</descriptorRef>
+  				</descriptorRefs>
+  				<archive>
+  					<manifest>
+  						<mainClass>de.nrw.hbz.deepzoomer.serviceimpl.ServiceImpl</mainClass>
+  					</manifest>
+  				</archive>
+  			</configuration>
+  		</plugin>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-war-plugin</artifactId>
+  			<version>2.3</version>
+  			<configuration>
+				<webXml>src/main/resources/WEB-INF/web.xml</webXml>
+				<packagingExcludes>WEB-INF/lib/servlet-api-2.3.jar</packagingExcludes>				
+				<warName>deepzoom</warName>
+			</configuration>
+  			<executions>
+  				<execution>
+  					<id>war</id>
+  				</execution>
+  			</executions> 
+  		</plugin>
   </plugins>
 </build>
 
@@ -20,5 +58,27 @@
       <version>1.2.8</version>
       <type>jar</type>
     </dependency>
+        <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
+    </dependency>
+	<dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-bundle</artifactId>
+		<version>1.17.1</version>
+	</dependency>
+	<dependency>
+		<groupId>asm</groupId>
+		<artifactId>asm</artifactId>
+		<version>3.3</version>
+	</dependency>
+
+        <dependency>
+        	<groupId>commons-codec</groupId>
+        	<artifactId>commons-codec</artifactId>
+        	<version>1.10</version>
+        </dependency>
  </dependencies> 
 </project>
