@@ -12,6 +12,7 @@ import de.nrw.hbz.deepzoomer.fileUtil.FileUtil;
 import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 import de.nrw.hbz.deepzoomer.serviceImpl.DeepZoomerUrlService;
 import de.nrw.hbz.deepzoomer.serviceImpl.VipsRunner;
+import de.nrw.hbz.deepzoomer.util.DziResult;
 
 /**
  * @author aquast
@@ -22,7 +23,7 @@ public class TestDeepZoomerUrlService {
 	// Initialize logger object 
 	private static Logger log = Logger.getLogger(TestDeepZoomerUrlService.class);
 
-	@Test
+	//@Test
 	public void TestGetDzi(){
 
 		String fileName = "sagrada_familia.png";
@@ -36,7 +37,7 @@ public class TestDeepZoomerUrlService {
 
 		// Call DeepZoomerUrlService
 		DeepZoomerUrlService dziS = new DeepZoomerUrlService();
-		String dziContent = dziS.getDZI(url);
+		DziResult dziContent = dziS.getDZI(url);
 		log.info("dzi-Datei-Inhalt: " + dziContent);
 
 	}

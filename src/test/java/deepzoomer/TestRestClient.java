@@ -63,7 +63,7 @@ public class TestRestClient {
 				.queryParam("imageUrl", "http://phacops.spdns.de/opensd/sagrada_familia.png");
 		
 		log.info(wResource);
-		log.info(wResource.post(String.class).toString());
+		log.info(wResource.get(String.class).toString());
 		
 		
 		

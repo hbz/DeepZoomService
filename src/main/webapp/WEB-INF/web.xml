@@ -12,6 +12,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>DeepZoomer REST Service</servlet-name>
-    <url-pattern>/*</url-pattern>
-  </servlet-mapping>
+    <url-pattern>/api/*</url-pattern>
+  </servlet-mapping>  
 </web-app>

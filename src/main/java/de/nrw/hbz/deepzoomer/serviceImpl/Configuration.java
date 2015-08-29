@@ -76,12 +76,14 @@ public class Configuration {
 
 	private static void setResultDirPath(){
 		//resultDirPath = System.getProperty("user.dir") + sysProp.getProperty("resultDir") + "/";
-		resultDirPath = sysProp.getProperty("workingDir") + sysProp.getProperty("resultDir") + "/";
+		resultDirPath = sysProp.getProperty("workingDir") 
+				+ sysProp.getProperty("path") + "/" + sysProp.getProperty("resultDir") + "/";
 	}
 
 	private static void setTempDirPath(){
 		//tempDirPath = System.getProperty("user.dir") + sysProp.getProperty("tempDir") + "/";
-		tempDirPath = sysProp.getProperty("workingDir") + sysProp.getProperty("tempDir") + "/";
+		tempDirPath = sysProp.getProperty("workingDir") 
+				+ sysProp.getProperty("path") + "/" + sysProp.getProperty("tempDir") + "/";
 	}
 
 	public static void loadConfigurationFile(){

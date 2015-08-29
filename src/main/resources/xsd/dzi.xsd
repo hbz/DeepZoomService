@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/deepzoom/2008">
+  <xs:element name="Image">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Size">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="Height"/>
+                <xs:attribute type="xs:string" name="Width"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="Format"/>
+      <xs:attribute type="xs:string" name="Overlap"/>
+      <xs:attribute type="xs:string" name="TileSize"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
