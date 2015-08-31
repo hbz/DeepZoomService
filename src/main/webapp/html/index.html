@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Seadragon Driven Zooming</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+<link rel="stylesheet" type="text/css" href="../css/jquery-ui.min.css"/>
+</head>
+<body>
+<div class="menu">
+    <!-- 
+    <div>Bildauswahl:</div>
+    <div>
+      <ul>
+		<li>
+    		<a class="dz_image_url" href="http://phacops.spdns.de/opensd/ruhrinfrastruktur.tif" 
+    		target="_blank">Ruhr-Infrastruktur</a>
+		</li>
+		<li class="dz_image_url">Misdroy2400</li>
+		<li class="dz_image_url">Misdroy</li>
+		<li class="dz_image_url">sagrada_familia_png</li>
+      </ul>
+    </div> -->
+    <div>
+    	<form action="GET">
+    		<h3>Insert Image Url</h3>
+    		<input class="dz_image_url" type="url" size="30 name="image_url" value="http://phacops.spdns.de/opensd/ruhrinfrastruktur.tif"></input>
+    		<input type="submit"></input> 
+    	</form>
+    </div>
+</div>
+
+<div class="viewer" id="openseadragon1" style="width: 800px; height: 600px; background:#ccc;"></div>
+
+<script src="../js/openseadragon.min.js"></script>
+<script src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/osviewer.js"></script>
+
+</body>
+</html>

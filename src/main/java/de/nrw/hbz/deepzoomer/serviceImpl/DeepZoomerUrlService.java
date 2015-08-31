@@ -59,8 +59,8 @@ public class DeepZoomerUrlService {
 	private DziResult getDziResult(String imageUrl){
 		DziResult dzi = null;
 		
-		String fileName = imageUrl.replaceAll("/", "").replace("http:", "")
-				.replace("file:", "");
+		String fileName = imageUrl.replaceAll("\\W", "").replace("http", "")
+				.replace("https", "").replace("file", "");
 		log.info(fileName);
 		if (new File(Configuration.getResultDirPath()+ fileName + ".dzi").isFile()){
 			//nothing to do here

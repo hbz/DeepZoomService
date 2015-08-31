@@ -58,7 +58,7 @@ public class DziResult {
 			Unmarshaller jConUn = jCon.createUnmarshaller();
 			
 			Image dziObj = (Image) jConUn.unmarshal(new File(Configuration.getResultDirPath()+ parseFileName + ".dzi"));		
-			Url = Configuration.getResultDirUrl() + parseFileName + "_files";
+			Url = Configuration.getResultDirUrl() + parseFileName + "_files/";
 			Format = dziObj.getFormat();
 			TileSize = dziObj.getTileSize();
 			Overlap = dziObj.getOverlap();
