@@ -1,0 +1,27 @@
+h1. About
+
+The hbz DeepZoom-Tool implements a RESTful service generates, caches and provides pyramidal (deep zoom able) tiles. It provides a JSONP object which can integrated via OpenSeadragen into web pages for dispaying images in a zommable format.
+
+The DeepZoom-Tool uses VIPS as pyramidal tiles generator. 
+
+h1. Requirements
+
+* Java SDK, Version 1.7 (openjdk)
+* VIPS
+* Tomcat, Version 6
+
+VIPS can be installed from the Software Repositories of many Linux Distributions (not included in SLES 11 and 12). 
+
+h1. Releases
+ 
+Version 0.2.
+
+
+h1. Status
+
+early Beta 
+
+h1. License
+
+LGPL
+Copyright 2015 Hochschulbibliothekszentrum des Landes Nordrhein-Westfalen (http://www.hbz-nrw.de)

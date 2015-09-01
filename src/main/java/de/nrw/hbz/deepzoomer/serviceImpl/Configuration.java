@@ -49,6 +49,7 @@ public class Configuration {
 
 	private static void setDefaultProp(){
 		defProp.setProperty("host", "nyx.hbz-nrw.de");
+		defProp.setProperty("protocol", "http");
 		defProp.setProperty("port", "8080");
 		defProp.setProperty("path", "deepzoom");
 		defProp.setProperty("tempDir", "temp");
@@ -69,7 +70,7 @@ public class Configuration {
 	}
 	
 	private static void setServiceUrl(){
-		serviceUrl = "http://" + sysProp.getProperty("host") + ":" 
+		serviceUrl = sysProp.getProperty("protocol") + "://" + sysProp.getProperty("host") + ":" 
 				+ sysProp.getProperty("port") + "/"
 				+ sysProp.getProperty("path") + "/"; 
 	}
