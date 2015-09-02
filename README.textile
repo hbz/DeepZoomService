@@ -4,13 +4,31 @@ The hbz DeepZoom-Tool implements a RESTful service generates, caches and provide
 
 The DeepZoom-Tool uses VIPS as pyramidal tiles generator. 
 
-h1. Requirements
+h1. Install
 
+h2. Prerequisites
+
+* Maven
 * Java SDK, Version 1.7 (openjdk)
 * VIPS
 * Tomcat, Version 6
 
-VIPS can be installed from the Software Repositories of many Linux Distributions (not included in SLES 11 and 12). 
+VIPS can be installed from the Software Repositories of many Linux Distributions (not included in SLES 11 and 12).
+
+h2. Quick Install
+
+1. Get with: git clone https://github.com/hbz/DeepZoomService.git
+2. Deploy with: mvn clean test install
+3. Copy deepzoom.war into the tomcat webapp-dir
+4. Open Browser and run http://localhost:8080/deepzoom/example to get an example web page
+
+h2. Install
+
+1. Get with: git clone https://github.com/hbz/DeepZoomService.git
+2. Create web accesible temp and tilesCache-Dir outside tomcat 
+3. Change deepzoomer.cfg according our Server settings
+4. Setup Apache accordingly
+
 
 h1. Releases
  
@@ -19,7 +37,7 @@ Version 0.2.
 
 h1. Status
 
-early Beta 
+Beta 
 
 h1. License
 
