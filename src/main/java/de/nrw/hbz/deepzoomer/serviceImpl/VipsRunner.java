@@ -62,12 +62,14 @@ public class VipsRunner {
             exitStateStr = Integer.toString(exitState);
 		}catch(Exception Exc){
 			log.error(Exc);
+		}finally{
+			//unlink temp file
+			if(new File(Configuration.getTempDirPath() + fileName).isFile()){
+				new File(Configuration.getTempDirPath() + fileName).delete();
+			}
+			
 		}
 		
-		//unlink temp file
-		if(new File(Configuration.getTempDirPath() + fileName).isFile()){
-			new File(Configuration.getTempDirPath() + fileName).delete();
-		}
 		// TODO: das Ausführen von VIPS kann etwas dauern... was mache
 		// ich um festzustellen, dass VIPS seine Arbeit beendet hat? 		
 	}

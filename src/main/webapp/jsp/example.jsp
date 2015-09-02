@@ -7,49 +7,59 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Example Client for hbz DeepZoom-Service</title>
-<link rel="stylesheet" type="text/css" href="../css/style.css"/>
-<link rel="stylesheet" type="text/css" href="../css/jquery-ui.min.css"/>
+<link rel="stylesheet" type="text/css" href="<%= Configuration.getServiceUrl() %>css/style.css"/>
+<link rel="stylesheet" type="text/css" href="<%= Configuration.getServiceUrl() %>css/jquery-ui.min.css"/>
 </head>
 <body>
 <h1>Example Client for RESTful hbz DeepZoom-Service</h1>
 <p>Service-Provider URLused by Example Page:<br/>
 <em><%= Configuration.getServiceUrl() %></em></p>
 <div class="menu">
-    <!-- 
-    <div>Bildauswahl:</div>
+     
     <div>
-      <ul>
-		<li>
-    		<a class="dz_image_url" href="http://phacops.spdns.de/opensd/ruhrinfrastruktur.tif" 
-    		target="_blank">Ruhr-Infrastruktur</a>
-		</li>
-		<li class="dz_image_url">Misdroy2400</li>
-		<li class="dz_image_url">Misdroy</li>
-		<li class="dz_image_url">sagrada_familia_png</li>
-      </ul>
-    </div> -->
-    <div>
-    	<form action="GET">
+    	<form action="">
     		<h3>Insert Image Url</h3>
-    		<input class="dz_image_url" type="url" size="30 name="image_url" value="http://phacops.spdns.de/opensd/ruhrinfrastruktur.tif"></input>
-    		<input type="submit"></input> 
+    		<input class="dz_image_url" type="url" size="30 name="image_url" value="<%= Configuration.getServiceUrl() %>example_img/sagrada_portal.png"></input>
+    		<div class="button" style="float:left;" >Go!</div><!-- <input type="submit"></input> -->
     	</form>
     </div>
+
+    <div style="clear:both;">Kleine Auswahl von Bildern</div>
+    <div>
+      <ul>
+		<li class="dz_image_url" img_url="<%= Configuration.getServiceUrl() %>example_img/sagrada_portal.png">
+			Nordportal (?) der Sagrada Familia
+ 		</li>
+		<li class="dz_image_url" img_url="<%= Configuration.getServiceUrl() %>example_img/sagrada.jpg">
+			Sagrada Familia
+ 		</li>
+		<li class="dz_image_url" img_url="<%= Configuration.getServiceUrl() %>example_img/sagrada.jpg">
+			Sagrada Familia von Innen
+ 		</li>
+		<li class="dz_image_url" img_url="<%= Configuration.getServiceUrl() %>example_img/Pfingststrum.JPG">
+			Pfingststurm in Bochum
+ 		</li>
+		<li class="dz_image_url" img_url="<%= Configuration.getServiceUrl() %>example_img/Bambusgarten.png">
+			Bambusgarten in den Cevennen
+ 		</li>
+      </ul>
+    </div>
+
 </div>
 
 <div class="viewer" id="openseadragon1" style="width: 800px; height: 600px; background:#ccc;"></div>
 
-<script src="../js/openseadragon.min.js"></script>
-<script src="../js/jquery-1.9.1.min.js"></script>
-<script src="../js/jquery-ui.min.js"></script>
-<script src="../js/osviewer.js"></script>
+<script src="<%= Configuration.getServiceUrl() %>js/openseadragon.min.js"></script>
+<script src="<%= Configuration.getServiceUrl() %>js/jquery-1.9.1.min.js"></script>
+<script src="<%= Configuration.getServiceUrl() %>js/jquery-ui.min.js"></script>
+<script src="<%= Configuration.getServiceUrl() %>js/osviewer.js"></script>
 
 <script language="javascript" type="text/javascript"> 
 $(document).ready(getImageUrl);
 
 var serviceUrl = "<%= Configuration.getServiceUrl() %>api/getDzi?imageUrl=";
 var callbackString = "&callback=?";
-var imageUrl = "http://phacops.spdns.de/opensd/ruhrinfrastruktur.tif";
+var imageUrl = "<%= Configuration.getServiceUrl() %>/opensd/ruhrinfrastruktur.png";
 var viewer = null;
 
 var tileSourcesFn
@@ -70,28 +80,33 @@ function getImageUrl(){
 		
 	};
 
-	/*
+	
 	$("li.dz_image_url").each(function(){
 		$(this).attr("style", "cursor: pointer;");
 		$(this).click(function(){
-			imageUrl = $(this).html(); 
-			alert(imageUrl);
+			imageUrl = $(this).attr("img_url"); 
+			$("#openseadragon1").dialog("open");
+			deepZoomService();
+			return false;
 		});
 	});
 	
+	
+	/*
 	$("a.dz_image_url").each(function(){
 		$(this).click(function(){
 			imageUrl = $(this).attr("href");
-
+			$("#openseadragon1").dialog("open");
 			deepZoomService();
 			return false;
 		});
 
 	});
 	*/
-
+	
+	
 	$("input.dz_image_url").each(function(){
-		$(this).parent().find("input[type='submit']").click(function(){
+		$(this).parent().find(".button").click(function(){
 			imageUrl = $("input.dz_image_url").val();
 			$("#openseadragon1").dialog("open");
 			deepZoomService();
@@ -99,6 +114,7 @@ function getImageUrl(){
 		});
 
 	});
+	
 
 
 
@@ -123,7 +139,7 @@ function deepZoomService (){
         
 		viewer = OpenSeadragon({
           id: "openseadragon1",
-          prefixUrl: "../OSimages/",
+          prefixUrl: "<%= Configuration.getServiceUrl() %>OSimages/",
           tileSources: {
         	  Image: {
         		  xmlns:    "http://schemas.microsoft.com/deepzoom/2008",

@@ -1,40 +1,32 @@
 h1. About
 
-Description of API provided by gndWS 
+Description of API provided by DeepZoom-Service 
 
 h1. RestFul Services
 
 Replace domain with appropriate url
 
-http://domain/loddiggr/api
+http://domain/deepzoom/api/
 
 h2. Services
 
-h3. GND Person ID Request
+h3. getDzi
 
-Service takes first name(s) and last name of a person and returns an ID from the Gemeinsame Norm Datei (GND) if applicable
+Service takes an Url or an Image file and produces a set of Image Tiles (pyramidal Image) presentable within a Web-Viewer like OpenSeadragon (openseadragon.github.io)
 
-Param: firstName, lastName
+Param: imageUrl the Url off an Image to process
 
-Returns: a list of matching person data, each with: ID, preferred name, biographic details*, year of birth*, academic title*, wikipedia url*  
-
-* if applicable
+Returns: a JSONP Object bearing all necessary information to produce a zzomable Image within an appropriate Viewer.   
 
 h4. Response Formmats
 
-application/xml
 application/json
 
 h4. Example Calls
 
-XML via POST
-@curl -v -H "Accept: application/xml" -X POST --url "http://localhost:8080/loddiggr/api/personInfo?firstName=Loki&lastName=Schmidt"@ 
-
 JSONP via GET
-@curl 'http://localhost:8080/loddiggr/api/personInfo?firstName=Andres&lastName=Quast&callback=jQuery191014007193349014002_1387286344636&_=1387286344637' -H 'Accept: application/x-javascript'@
+@curl 'http://localhost:8080/deepzoom/api/getDzi?imageUrl=http://localhost:8080/deepzoom/example_img/Bambusgarten.png' -H 'Accept: application/x-javascript'@
 
 h4. Known Issues
 
-* actually XMLRootelement and Person List element are the same
-* Sparql-request Results with columns containing blank nodes will be skipped: Do not define an Sparql-request template that returns a blank node column: was a feature to reduce results, maybe its a bug?
-  
+Some Issues with the example viewer page: http://localhost:8080/deepzoom/example

@@ -1,3 +1,9 @@
 body{
 	background: #fff;
+	font-family: sans-serif;
+}
+
+div{
+	margin: 10px;
+	padding: 5px;
 }

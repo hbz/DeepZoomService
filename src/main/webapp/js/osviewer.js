@@ -5,9 +5,9 @@
 
 $(document).ready(getImageUrl);
 
-var serviceUrl = "http://ellinet-dev.hbz-nrw.de:9090/deepzoom/api/getDzi?imageUrl=";
+var serviceUrl = "http://localhost:8080/deepzoom/api/getDzi?imageUrl=";
 var callbackString = "&callback=?";
-var imageUrl = "http://phacops.spdns.de/opensd/ruhrinfrastruktur.tif";
+var imageUrl = "http://localhost/opensd/Bambusgarten.png";
 var viewer = null;
 
 var tileSourcesFn
@@ -39,7 +39,7 @@ function getImageUrl(){
 	$("a.dz_image_url").each(function(){
 		$(this).click(function(){
 			imageUrl = $(this).attr("href");
-
+			$("#openseadragon1").dialog("open");
 			deepZoomService();
 			return false;
 		});
