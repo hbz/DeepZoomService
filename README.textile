@@ -30,6 +30,28 @@ h2. Install
 4. Setup Apache accordingly
 
 
+h1. Usage
+
+To integrate the Service API into your web site, you have to proceed with 4 easy steps.
+
+1. Include required libraries into your web page
+
+{code}
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+<script src="js/openseadragon.min.js"></script>
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+</head>
+
+<body>
+{code}
+
+For jQuery, jQuery-UI and OpenSeadragon you also can use the remote the js libraries, which is not recommended for production environments
+
+   
+
 h1. Releases
  
 Version 0.2.

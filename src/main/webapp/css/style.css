@@ -1,9 +1,19 @@
 body{
 	background: #fff;
 	font-family: sans-serif;
+	margin: 10px;
 }
 
 div{
-	margin: 10px;
 	padding: 5px;
 }
+
+div.local{color: #d0ffd0; background: #333333;
+          font-family: Sans Serif, sans-serif;
+          font-size: 14pt; margin: 8%; 
+          clear:both}
+div.local h1       {color: #d0ffd0;}
+div.local table    {text-align: center; margin-left: auto; margin-right: auto;}
+div.local td       { color: #d0ffd0; padding: 1em}
+div.local img      { border: 1px solid #d0ffd0; }
+div.local a		   { color : red;}
