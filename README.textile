@@ -25,7 +25,7 @@ h2. Quick Install
 h2. Install
 
 # Get with: git clone https://github.com/hbz/DeepZoomService.git
-# Create web accesible temp and tilesCache-Dir outside tomcat 
+# Create web accessible temp and tilesCache-Dir outside tomcat 
 # Change deepzoomer.cfg according our Server settings
 # Setup Apache accordingly
 
