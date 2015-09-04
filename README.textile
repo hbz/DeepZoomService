@@ -44,6 +44,7 @@ pre.. <html>
 <script src="js/jquery-ui.min.js"></script>
 </head>
 <body>
+
 p. 
 For jQuery, jQuery-UI and OpenSeadragon you also can use the remote the js libraries, which is not recommended for production environments
 # Use jQuery to identify the html-Elements that should make use of the service
