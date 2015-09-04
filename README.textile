@@ -35,6 +35,7 @@ h1. Usage
 To integrate the Service API into your web site, you have to proceed with 4 easy steps.
 
 # Include required libraries into your web page
+
 pre.. <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
