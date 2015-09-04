@@ -17,25 +17,24 @@ VIPS can be installed from the Software Repositories of many Linux Distributions
 
 h2. Quick Install
 
-1. Get with: git clone https://github.com/hbz/DeepZoomService.git
-2. Deploy with: mvn clean test install
-3. Copy deepzoom.war into the tomcat webapp-dir
-4. Open Browser and run http://localhost:8080/deepzoom/example to get an example web page
+# Get with: git clone https://github.com/hbz/DeepZoomService.git
+# Deploy with: mvn clean test install
+# Copy deepzoom.war into the tomcat webapp-dir
+# Open Browser and run http://localhost:8080/deepzoom/example to get an example web page
 
 h2. Install
 
-1. Get with: git clone https://github.com/hbz/DeepZoomService.git
-2. Create web accesible temp and tilesCache-Dir outside tomcat 
-3. Change deepzoomer.cfg according our Server settings
-4. Setup Apache accordingly
+# Get with: git clone https://github.com/hbz/DeepZoomService.git
+# Create web accesible temp and tilesCache-Dir outside tomcat 
+# Change deepzoomer.cfg according our Server settings
+# Setup Apache accordingly
 
 
 h1. Usage
 
 To integrate the Service API into your web site, you have to proceed with 4 easy steps.
 
-1. Include required libraries into your web page
-
+# Include required libraries into your web page
 pre.. <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
@@ -44,9 +43,9 @@ pre.. <html>
 <script src="js/jquery-ui.min.js"></script>
 </head>
 <body>
-
 p. 
 For jQuery, jQuery-UI and OpenSeadragon you also can use the remote the js libraries, which is not recommended for production environments
+# Use jQury to identify the html-Elements that should make use of the service
 
 h1. Releases
  
