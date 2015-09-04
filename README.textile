@@ -45,9 +45,8 @@ pre.. <html>
 </head>
 <body>
 
+p. 
 For jQuery, jQuery-UI and OpenSeadragon you also can use the remote the js libraries, which is not recommended for production environments
-
-   
 
 h1. Releases
  
