@@ -36,8 +36,8 @@ To integrate the Service API into your web site, you have to proceed with 4 easy
 
 1. Include required libraries into your web page
 
-bq.. pre. <html>
-<head>
+bq.. \<html\>
+\<head\>
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
 <script src="js/openseadragon.min.js"></script>
 <script src="js/jquery-1.9.1.min.js"></script>
