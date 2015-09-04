@@ -43,9 +43,9 @@ pre.. <html>
 <script src="js/jquery-1.9.1.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 </head>
-
 <body>
-p. For jQuery, jQuery-UI and OpenSeadragon you also can use the remote the js libraries, which is not recommended for production environments
+
+For jQuery, jQuery-UI and OpenSeadragon you also can use the remote the js libraries, which is not recommended for production environments
 
    
 
