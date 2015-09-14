@@ -34,20 +34,122 @@ h1. Usage
 
 To integrate the Service API into your web site, you have to proceed with 4 easy steps.
 
-# Include required libraries into your web page
+h3. 1. Include required libraries into your web page 
 
 pre.. <html>
-<head>
-<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
-<script src="js/openseadragon.min.js"></script>
-<script src="js/jquery-1.9.1.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
-</head>
+ <head>
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css"/>
+  <script src="js/openseadragon.min.js"></script>
+  <script src="js/jquery-1.9.1.min.js"></script>
+  <script src="js/jquery-ui.min.js"></script>
+ </head>
 <body>
+p. 
+
+h3. 2. Use jQuery to identify the html-Elements that should make use of the service
+
+pre.. <div style="clear:both;">Kleine Auswahl von Bildern</div>
+ <div>
+  <ul>
+   <li>
+    <a class="dz_image_url" href="http://localhost/opensd/sagrada_portal.png" 
+       target="_blank">Nordportal (?) der Sagrada Familia
+    </a>
+   </li>
+   <li>
+    <a class="dz_image_url" href="http://localhost/opensd/sagrada.jpg" 
+       target="_blank">Innenraum Sagrada Familia
+    </a>
+   </li>
+  </ul>
+ </div>
+</div>
+
+<script language="javascript" type="text/javascript"> 
+$(document).ready(getImageUrl);
+
+function getImageUrl(){
+
+	$("li.dz_image_url").each(function(){
+		$(this).attr("style", "cursor: pointer;");
+		$(this).click(function(){
+p. 
+
+h3. 3. Add OpenSeadragon viewer to these html-Elements
+
+pre.. 
+			imageUrl = $(this).html(); 
+			$("#openseadragon1").dialog("open");
+			deepZoomService();
+			return false;
+		});
+	});
+
+	$('#openseadragon1').dialog({
+	      modal: true,
+	      autoOpen: false,
+	      height: ($(window).height() - 60),
+	      width: ($(window).width() - 60),
+	      buttons: {
+	        Ok: function() {
+	          $( this ).dialog( "close" );
+	        }
+	      }
+	    });
+		
+	};
 
 p. 
+
+h3. Add OpenSeadragon code 
+
+pre.. 
+
+var serviceUrl = "http://localhost:8080/deepzoom/api/getDzi?imageUrl=";
+var callbackString = "&callback=?";
+var imageUrl = "http://localhost/opensd/Bambusgarten.png";
+var viewer = null;
+var tileSourcesFn;
+
+function deepZoomService (){
+	var url = serviceUrl + imageUrl + callbackString;
+	
+	$.getJSON(url, function(json){
+		tileSourcesFn = json;
+
+		if(viewer){
+        	viewer.destroy();
+        }
+        
+		viewer = OpenSeadragon({
+          id: "openseadragon1",
+          prefixUrl: "../OSimages/",
+          tileSources: {
+        	  Image: {
+        		  xmlns:    "http://schemas.microsoft.com/deepzoom/2008",
+        		  Url: tileSourcesFn.Url + "/",
+                  Format:   tileSourcesFn.Format, 
+                  Overlap:  tileSourcesFn.Overlap, 
+                  TileSize: tileSourcesFn.TileSize,
+                  Size: {
+                      Height: tileSourcesFn.Size.Height,
+                      Width:  tileSourcesFn.Size.Width
+                  }
+        		  
+        	  }
+          },
+          showNavigator: "true",
+        });
+        
+    });
+
+	
+}
+</script>
+p. 
+
+
 For jQuery, jQuery-UI and OpenSeadragon you also can use the remote the js libraries, which is not recommended for production environments
-# Use jQuery to identify the html-Elements that should make use of the service
 
 h1. Releases
  

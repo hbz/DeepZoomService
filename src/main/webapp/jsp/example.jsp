@@ -104,7 +104,7 @@ var callbackString = "&callback=?";
 var imageUrl = "<%=Configuration.getServiceUrl()%>/opensd/ruhrinfrastruktur.png";
 var viewer = null;
 
-var tileSourcesFn
+var tileSourcesFn;
 
 function getImageUrl(){
 	
