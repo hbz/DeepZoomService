@@ -18,7 +18,7 @@ VIPS can be installed from the Software Repositories of many Linux Distributions
 h2. Quick Install
 
 # Get with: git clone https://github.com/hbz/DeepZoomService.git
-# Deploy with: mvn clean test install
+# Deploy with: mvn clean test war:war
 # Copy deepzoom.war into the tomcat webapp-dir
 # Open Browser and run http://localhost:8080/deepzoom/example to get an example web page
 

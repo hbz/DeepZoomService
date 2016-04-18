@@ -98,7 +98,7 @@ public class Configuration {
                 System.out.println("loaded config file");
             }
         } catch (Exception e) {
-        	log.warn(e);
+        	System.out.println(e);
         }
 
 	}
@@ -114,7 +114,7 @@ public class Configuration {
 			PropertyConfigurator.configure(new Configuration().readLogProperties());
 			
 		} catch (IOException e) {
-			log.info(e);
+			System.out.println(e);
 		}
 	}
 	
