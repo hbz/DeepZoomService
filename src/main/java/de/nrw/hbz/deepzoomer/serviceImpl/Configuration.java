@@ -48,14 +48,14 @@ public class Configuration {
 	}
 
 	private static void setDefaultProp(){
-		defProp.setProperty("host", "nyx.hbz-nrw.de");
+		defProp.setProperty("host", "localhost");
 		defProp.setProperty("protocol", "http");
 		defProp.setProperty("port", "8080");
 		defProp.setProperty("path", "deepzoom");
 		defProp.setProperty("tempDir", "temp");
-		defProp.setProperty("resultDir", "result");
+		defProp.setProperty("resultDir", "tilesCache");
 		defProp.setProperty("userDir", "all");
-		defProp.setProperty("workingDir", "/srv/tomcat6/webapps/");
+		defProp.setProperty("workingDir", "/var/lib/tomcat7/webapps/");
 		
 		
 	}
