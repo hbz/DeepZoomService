@@ -22,18 +22,9 @@
  */
 package deepzoomer;
 
-import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
+import de.nrw.hbz.deepzoomer.serviceImpl.Globals;
 import org.apache.log4j.Logger;
-import org.junit.Test;
-
-
-import java.net.URI;
-
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriBuilder;
-
 import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
@@ -53,20 +44,15 @@ public class TestRestClient {
 	// Initiate Logger for TestRestClient
 	private static Logger log = Logger.getLogger(TestRestClient.class);
 	
-	private String uri = Configuration.getServiceUrl();
-	
 	//@Test 
 	public void callRestFulServicePlain(){
 		Client client = createClient();
-		WebResource wResource = client.resource(uri + "api/getDzi");
+		WebResource wResource = client.resource(Globals.conf.getServiceUrl() + "api/getDzi");
 		wResource = wResource
 				.queryParam("imageUrl", "http://phacops.spdns.de/opensd/sagrada_familia.png");
 		
 		log.info(wResource);
 		log.info(wResource.get(String.class).toString());
-		
-		
-		
 	}
 
 	private Client createClient(){
@@ -82,7 +68,6 @@ public class TestRestClient {
 	 * @param args 
 	 */
 	public static void main(String[] args) {
-		Configuration.initLog();
 		TestRestClient trClient= new TestRestClient();
 		trClient.callRestFulServicePlain();
 

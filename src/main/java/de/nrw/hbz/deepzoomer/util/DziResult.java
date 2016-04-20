@@ -13,7 +13,7 @@ import javax.xml.bind.helpers.*;
 import org.apache.log4j.Logger;
 
 import de.nrw.hbz.deepzoomer.dzi.Image;
-import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
+import de.nrw.hbz.deepzoomer.serviceImpl.Globals;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -57,8 +57,8 @@ public class DziResult {
 			jCon = JAXBContext.newInstance(contextPath);
 			Unmarshaller jConUn = jCon.createUnmarshaller();
 			
-			Image dziObj = (Image) jConUn.unmarshal(new File(Configuration.getResultDirPath()+ parseFileName + ".dzi"));		
-			Url = Configuration.getResultDirUrl() + parseFileName + "_files/";
+			Image dziObj = (Image) jConUn.unmarshal(new File(Globals.conf.getResultDirPath()+ parseFileName + ".dzi"));		
+			Url = Globals.conf.getResultDirUrl() + parseFileName + "_files/";
 			Format = dziObj.getFormat();
 			TileSize = dziObj.getTileSize();
 			Overlap = dziObj.getOverlap();

@@ -20,7 +20,6 @@ public class TestDziResult {
 	
 		@Test
 		public void getDziResult(){
-			Configuration.initLog();
 			String testFileName = "src/test/resources/dzi/test";
 			DziResult dzi = new DziResult(testFileName);
 			log.info(dzi.toString());

@@ -62,7 +62,7 @@ public class DeepZoomerUrlService {
 		String fileName = imageUrl.replaceAll("\\W", "").replace("https", "")
 				.replace("http", "").replace("file", "");
 		log.info(fileName);
-		if (new File(Configuration.getResultDirPath()+ fileName + ".dzi").isFile()){
+		if (new File(Globals.conf.getResultDirPath()+ fileName + ".dzi").isFile()){
 			//nothing to do here
 			log.debug("use cached DeepZoom-Images");
 		} else {

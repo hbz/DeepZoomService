@@ -39,8 +39,8 @@ public class VipsRunner {
 				);
 		String executeString = new String(programPath + " " 
 				+ defaultParams 
-				+ " " + Configuration.getTempDirPath() + fileName 
-				+ " " + Configuration.getResultDirPath() + fileName
+				+ " " + Globals.conf.getTempDirPath() + fileName 
+				+ " " + Globals.conf.getResultDirPath() + fileName
 				); 
 
 		log.info("The execute String: " + executeString);
@@ -64,8 +64,8 @@ public class VipsRunner {
 			log.error(Exc);
 		}finally{
 			//unlink temp file
-			if(new File(Configuration.getTempDirPath() + fileName).isFile()){
-				new File(Configuration.getTempDirPath() + fileName).delete();
+			if(new File(Globals.conf.getTempDirPath() + fileName).isFile()){
+				new File(Globals.conf.getTempDirPath() + fileName).delete();
 			}
 			
 		}
