@@ -22,13 +22,23 @@
  */
 package de.nrw.hbz.deepzoomer.fileUtil;
 
-import org.apache.log4j.Logger;
-import org.apache.commons.codec.binary.Base64;
-import de.nrw.hbz.deepzoomer.serviceImpl.Globals;
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+
+import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.Logger;
+
+import de.nrw.hbz.deepzoomer.serviceImpl.Globals;
 
 /**
  * Class filteUtil
@@ -57,8 +67,7 @@ public class FileUtil {
 	 * representing the orginal PDF, that should be converted
 	 * </p>
 	 * 
-	 * @param stream
-	 *            <code>String</code>
+	 * @param stream <code>String</code>
 	 * @return <code>String</code> Filename of newly created temporary File
 	 */
 	public static String saveStreamToTempFile(String fileName, String stream) {
@@ -103,7 +112,8 @@ public class FileUtil {
 	 * @param contentString
 	 * @return
 	 */
-	public static String saveStringToResultFile(String fileName, String contentString) {
+	public static String saveStringToResultFile(String fileName,
+			String contentString) {
 		File inputFile = null;
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
@@ -142,7 +152,8 @@ public class FileUtil {
 	 * @param contentString
 	 * @return
 	 */
-	public static String appendStringToResultFile(String fileName, String contentString) {
+	public static String appendStringToResultFile(String fileName,
+			String contentString) {
 		FileWriter fw = null;
 		File inputFile = null;
 		try {
@@ -176,11 +187,11 @@ public class FileUtil {
 	 * original PDF, that should be converted
 	 * </p>
 	 * 
-	 * @param stream
-	 *            <code>String</code>
+	 * @param stream <code>String</code>
 	 * @return <code>String</code> Filename of newly created temporary File
 	 */
-	public static String saveBase64ByteStringToFile(File outputFile, String stream) {
+	public static String saveBase64ByteStringToFile(File outputFile,
+			String stream) {
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
 		try {
@@ -264,7 +275,8 @@ public class FileUtil {
 	public static void saveUrlToFile(String fileName, String url) {
 		try {
 			URL u = new URL(url);
-			File outputFile = new File(Globals.conf.getTempDirPath() + "/" + fileName);
+			File outputFile =
+					new File(Globals.conf.getTempDirPath() + "/" + fileName);
 			log.info("Download " + url + " to " + outputFile);
 			if ("file".equals(u.getProtocol())) {
 				saveInputStreamToTempFile(new FileInputStream(u.getPath()), outputFile);

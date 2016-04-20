@@ -22,53 +22,55 @@
  */
 package deepzoomer;
 
-import de.nrw.hbz.deepzoomer.serviceImpl.Globals;
-
 import java.io.File;
 
 import org.apache.log4j.Logger;
 import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 
+import de.nrw.hbz.deepzoomer.serviceImpl.Globals;
+
 /**
  * Class TestRestClient
  * 
- * <p><em>Title: </em></p>
- * <p>Description: </p>
+ * <p>
+ * <em>Title: </em>
+ * </p>
+ * <p>
+ * Description:
+ * </p>
  * 
- * @author aquast, email
- * creation date: 29.07.2013
+ * @author aquast, email creation date: 29.07.2013
  *
  */
 public class TestRestClient {
 
 	// Initiate Logger for TestRestClient
 	private static Logger log = Logger.getLogger(TestRestClient.class);
-	
-	 
-	public void callRestFulServicePlain(){
+
+	public void callRestFulServicePlain() {
 		Client client = createClient();
-		WebResource wResource = client.resource(Globals.conf.getServiceUrl() + "/api/getDzi");
-		wResource = wResource
-				.queryParam("imageUrl", "http://phacops.spdns.de/opensd/sagrada_familia.png");
+		WebResource wResource =
+				client.resource(Globals.conf.getServiceUrl() + "/api/getDzi");
+		wResource = wResource.queryParam("imageUrl",
+				"http://phacops.spdns.de/opensd/sagrada_familia.png");
 		log.info(wResource);
 		log.info(wResource.get(String.class).toString());
 		wResource.get(String.class);
 	}
 
-	private Client createClient(){
+	private Client createClient() {
 		ClientConfig config = new DefaultClientConfig();
 		Client client = Client.create(config);
 		return client;
 	}
-	@After 
-	public void cleanUp(){
+
+	@After
+	public void cleanUp() {
 		new File(Globals.conf.workingDir).delete();
 	}
 }

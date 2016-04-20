@@ -19,21 +19,23 @@ import de.nrw.hbz.deepzoomer.serviceImpl.VipsRunner;
  *
  */
 public class TestVipsRunner {
-	// Initialize logger object 
+	// Initialize logger object
 	private static Logger log = Logger.getLogger(TestVipsRunner.class);
 
 	@Test
-	public void TestVips(){
+	public void TestVips() {
 		String paramString = "";
-		URL url=Thread.currentThread().getContextClassLoader().getResource("sagrada_familia.png");
+		URL url = Thread.currentThread().getContextClassLoader()
+				.getResource("sagrada_familia.png");
 		String fileName = Globals.createFileName(url.getPath());
-		log.info("Filename: "+fileName);
-		FileUtil.saveUrlToFile(fileName, url.toString()); 
+		log.info("Filename: " + fileName);
+		FileUtil.saveUrlToFile(fileName, url.toString());
 		VipsRunner vips = new VipsRunner();
 		vips.executeVips(paramString, fileName);
 	}
-	@After 
-	public void cleanUp(){
+
+	@After
+	public void cleanUp() {
 		new File(Globals.conf.workingDir).delete();
 	}
 }
