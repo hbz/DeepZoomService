@@ -1,3 +1,5 @@
+!https://travis-ci.org/hbz/DeepZoomService.png?branch=master!:https://travis-ci.org/hbz/DeepZoomService
+
 h1. About
 
 The hbz DeepZoom-Tool implements a RESTful service generates, caches and provides pyramidal (deep zoom able) tiles. It provides a JSONP object which can integrated via OpenSeadragen (www.openseadragon.github.io) into web pages for displaying images in a zoomable format.
