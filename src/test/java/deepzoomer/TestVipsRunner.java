@@ -9,7 +9,6 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import de.nrw.hbz.deepzoomer.fileUtil.FileUtil;
-import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 import de.nrw.hbz.deepzoomer.serviceImpl.VipsRunner;
 
 /**
@@ -18,12 +17,12 @@ import de.nrw.hbz.deepzoomer.serviceImpl.VipsRunner;
  */
 public class TestVipsRunner {
 
-	// Initialize logger object 
+	// Initialize logger object
 	private static Logger log = Logger.getLogger(TestVipsRunner.class);
 
 	@Test
-	public void TestVips(){
-		
+	public void TestVips() {
+
 		String paramString = "";
 		String fileName = "sagrada_familia.png";
 		File testFile = new File("src/test/resources/sagrada_familia.png");
@@ -33,13 +32,12 @@ public class TestVipsRunner {
 		vips.executeVips(paramString, fileName);
 		log.info("VipsRunnerTest");
 	}
-	
-	
-	private void copyTestFile(String fileName, String url){
-		FileUtil.saveUrlToFile(fileName, url); 
+
+	private void copyTestFile(String fileName, String url) {
+		FileUtil.saveUrlToFile(fileName, url);
 
 	}
-	
+
 	/**
 	 * @param args
 	 */

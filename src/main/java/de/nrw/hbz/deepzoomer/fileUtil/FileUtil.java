@@ -22,68 +22,80 @@
  */
 package de.nrw.hbz.deepzoomer.fileUtil;
 
-import org.apache.log4j.Logger;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
 import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.Logger;
 
 import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
-
-import java.util.List;
-import java.util.Vector;
-import java.io.*;
-import java.net.URL;
-import java.net.MalformedURLException;
-
 
 /**
  * Class filteUtil
  * 
- * <p><em>Title: </em></p>
- * <p>Description: </p>
+ * <p>
+ * <em>Title: </em>
+ * </p>
+ * <p>
+ * Description:
+ * </p>
  * 
- * @author aquast, email
- * creation date: 24.09.2009
+ * @author aquast, email creation date: 24.09.2009
  *
  */
 public class FileUtil {
 
 	// Initiate Logger for filteUtil
 	private static Logger log = Logger.getLogger(FileUtil.class);
-	
+
 	private static File inputFile = null;
 
 	/**
-	 * <p><em>Title: Create a temporary File from a Base64 encoded byteStream</em></p>
-	 * <p>Description: Method creates a temporary file from the bytestream 
-	 * representing the orginal PDF, that should be converted</p>
+	 * <p>
+	 * <em>Title: Create a temporary File from a Base64 encoded byteStream</em>
+	 * </p>
+	 * <p>
+	 * Description: Method creates a temporary file from the bytestream
+	 * representing the orginal PDF, that should be converted
+	 * </p>
 	 * 
-	 * @param stream <code>String</code> 
+	 * @param stream <code>String</code>
 	 * @return <code>String</code> Filename of newly created temporary File
 	 */
-	public static String saveStreamToTempFile(String fileName, String stream){
+	public static String saveStreamToTempFile(String fileName, String stream) {
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
-		try{
-			//System.out.println("Base64 kodierter Stream: " + stream.length());
+		try {
+			// System.out.println("Base64 kodierter Stream: " + stream.length());
 			inputFile = new File(Configuration.getTempDirPath() + fileName);
 			log.debug(Configuration.getTempDirPath());
 			fos = new FileOutputStream(inputFile);
-			bos = new BufferedOutputStream(fos);			
+			bos = new BufferedOutputStream(fos);
 			bos.write(Base64.decodeBase64(stream.getBytes("UTF-8")));
-			
-		}catch(IOException ioExc){
+
+		} catch (IOException ioExc) {
 			log.error(ioExc);
-		}finally{
-			if(bos != null){
-				try{
+		} finally {
+			if (bos != null) {
+				try {
 					bos.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
-			if(fos != null){
-				try{
+			if (fos != null) {
+				try {
 					fos.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
@@ -92,36 +104,37 @@ public class FileUtil {
 		return inputFile.getName();
 	}
 
-
 	/**
 	 * Method saves a String to File
+	 * 
 	 * @param fileName
 	 * @param contentString
 	 * @return
 	 */
-	public static String saveStringToResultFile(String fileName, String contentString){
+	public static String saveStringToResultFile(String fileName,
+			String contentString) {
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
-		try{
+		try {
 			inputFile = new File(Configuration.getResultDirPath() + fileName);
 			fos = new FileOutputStream(inputFile);
-			bos = new BufferedOutputStream(fos);			
+			bos = new BufferedOutputStream(fos);
 			bos.write(contentString.getBytes("UTF-8"));
-			
-		}catch(IOException ioExc){
+
+		} catch (IOException ioExc) {
 			log.error(ioExc);
-		}finally{
-			if(bos != null){
-				try{
+		} finally {
+			if (bos != null) {
+				try {
 					bos.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
-			if(fos != null){
-				try{
+			if (fos != null) {
+				try {
 					fos.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
@@ -132,26 +145,28 @@ public class FileUtil {
 
 	/**
 	 * Method appends a String to File
+	 * 
 	 * @param fileName
 	 * @param contentString
 	 * @return
 	 */
-	public static String appendStringToResultFile(String fileName, String contentString){
+	public static String appendStringToResultFile(String fileName,
+			String contentString) {
 		FileWriter fw = null;
-		try{
+		try {
 			inputFile = new File(Configuration.getResultDirPath() + fileName);
 			fw = new FileWriter(inputFile, true);
 			log.info(Configuration.getResultDirPath());
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.append(contentString);
 			bw.flush();
-		}catch(IOException ioExc){
+		} catch (IOException ioExc) {
 			log.error(ioExc);
-		}finally{
-			if(fw != null){
-				try{
+		} finally {
+			if (fw != null) {
+				try {
 					fw.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
@@ -159,39 +174,44 @@ public class FileUtil {
 		log.info("File-Size, Ergebnis: " + inputFile.length());
 		return inputFile.getName();
 	}
-	
+
 	/**
-	 * <p><em>Title: Create a File from a Base64 encoded String</em></p>
-	 * <p>Description: Method creates a file from the bytestream 
-	 * representing the original PDF, that should be converted</p>
+	 * <p>
+	 * <em>Title: Create a File from a Base64 encoded String</em>
+	 * </p>
+	 * <p>
+	 * Description: Method creates a file from the bytestream representing the
+	 * original PDF, that should be converted
+	 * </p>
 	 * 
-	 * @param stream <code>String</code> 
+	 * @param stream <code>String</code>
 	 * @return <code>String</code> Filename of newly created temporary File
 	 */
-	public static String saveBase64ByteStringToFile(File outputFile, String stream){
+	public static String saveBase64ByteStringToFile(File outputFile,
+			String stream) {
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
-		try{
+		try {
 			fos = new FileOutputStream(outputFile);
-			bos = new BufferedOutputStream(fos);			
+			bos = new BufferedOutputStream(fos);
 			bos.write(Base64.decodeBase64(stream.getBytes("UTF-8")));
 			bos.flush();
 			bos.close();
-			
-		}catch(IOException ioExc){
+
+		} catch (IOException ioExc) {
 			log.error(ioExc);
-		}finally{
-			if(bos != null){
-				try{
+		} finally {
+			if (bos != null) {
+				try {
 					bos.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
-			if(fos != null){
-				try{
+			if (fos != null) {
+				try {
 					fos.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
@@ -200,31 +220,35 @@ public class FileUtil {
 	}
 
 	/**
-	 * <p><em>Title: Loads File into an Base64 encoded Stream</em></p>
-	 * <p>Description: </p>
+	 * <p>
+	 * <em>Title: Loads File into an Base64 encoded Stream</em>
+	 * </p>
+	 * <p>
+	 * Description:
+	 * </p>
 	 * 
 	 * @param origPidfFile
-	 * @return 
+	 * @return
 	 */
-	public static byte[] loadFileIntoStream(File origPidfFile){
+	public static byte[] loadFileIntoStream(File origPidfFile) {
 		FileInputStream fis = null;
 		byte[] pdfStream = null;
 		byte[] pdfRawStream = null;
-		try{
+		try {
 			fis = new FileInputStream(origPidfFile);
-			int i = (int) origPidfFile.length();			
+			int i = (int) origPidfFile.length();
 			byte[] b = new byte[i];
-		   	fis.read(b);
-			pdfRawStream = b; 
-			pdfStream = Base64.encodeBase64(pdfRawStream);			
-		}catch(IOException ioExc){
+			fis.read(b);
+			pdfRawStream = b;
+			pdfStream = Base64.encodeBase64(pdfRawStream);
+		} catch (IOException ioExc) {
 			System.out.println(ioExc);
 			log.error(ioExc);
-		}finally{
-			if(fis != null){
-				try{
+		} finally {
+			if (fis != null) {
+				try {
 					fis.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
@@ -233,24 +257,28 @@ public class FileUtil {
 	}
 
 	/**
-	 * <p><em>Title: Create a temporary File from a file identified by URL</em></p>
-	 * <p>Description: Method creates a temporary file from a remote file addressed 
-	 * an by URL representing the orginal PDF, that should be converted</p>
+	 * <p>
+	 * <em>Title: Create a temporary File from a file identified by URL</em>
+	 * </p>
+	 * <p>
+	 * Description: Method creates a temporary file from a remote file addressed
+	 * an by URL representing the orginal PDF, that should be converted
+	 * </p>
 	 * 
 	 * @param fileName
 	 * @param url
-	 * @return 
+	 * @return
 	 */
-	public static String saveUrlToFile(String fileName, String url){
-		File inputFile = new File(Configuration.getTempDirPath() +"/" + fileName);
+	public static String saveUrlToFile(String fileName, String url) {
+		File inputFile = new File(Configuration.getTempDirPath() + "/" + fileName);
 		log.debug(inputFile.getAbsolutePath());
 		InputStream is = null;
 		BufferedInputStream bis = null;
 		BufferedOutputStream bos = null;
 		FileOutputStream fos = null;
-		
+
 		log.info(url);
-		try{
+		try {
 			URL inputDocument = new URL(url);
 			is = inputDocument.openStream();
 			bis = new BufferedInputStream(is);
@@ -258,52 +286,57 @@ public class FileUtil {
 			fos = new FileOutputStream(inputFile);
 			bos = new BufferedOutputStream(fos);
 			int i = -1;
-			while((i = bis.read()) != -1){
+			while ((i = bis.read()) != -1) {
 				bos.write(i);
 			}
 			bos.flush();
-		}catch(Exception e){
+		} catch (Exception e) {
 			log.error(e);
-		}finally{
-			if(bos != null){
-				try{
+		} finally {
+			if (bos != null) {
+				try {
 					bos.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
-			if(fos != null){
-				try{
+			if (fos != null) {
+				try {
 					fos.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
-			if(bis != null){
-				try{
+			if (bis != null) {
+				try {
 					bis.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
-			if(is != null){
-				try{
+			if (is != null) {
+				try {
 					is.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
 		}
 		return inputFile.getName();
 	}
-	
+
 	/**
-	 * <p><em>Title: Save InputSream to an temporary File</em></p>
-	 * <p>Description: </p>
+	 * <p>
+	 * <em>Title: Save InputSream to an temporary File</em>
+	 * </p>
+	 * <p>
+	 * Description:
+	 * </p>
 	 * 
-	 * @return 
+	 * @return
 	 */
-	public static void saveInputStreamToTempFile(InputStream is, String fileName){
+	public static void saveInputStreamToTempFile(InputStream is,
+			String fileName) {
 
 		File outputFile = new File(Configuration.getTempDirPath() + fileName);
 		BufferedInputStream bis = new BufferedInputStream(is);
@@ -313,75 +346,75 @@ public class FileUtil {
 			fos = new FileOutputStream(outputFile);
 			bos = new BufferedOutputStream(fos);
 			int i = -1;
-			while((i = bis.read()) != -1){
+			while ((i = bis.read()) != -1) {
 				bos.write(i);
 			}
 			bos.flush();
-		}catch(Exception e){
+		} catch (Exception e) {
 			log.error(e);
-		}finally{
-			if(bos != null){
-				try{
+		} finally {
+			if (bos != null) {
+				try {
 					bos.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
-			if(fos != null){
-				try{
+			if (fos != null) {
+				try {
 					fos.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
-			if(bis != null){
-				try{
+			if (bis != null) {
+				try {
 					bis.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
-			if(is != null){
-				try{
+			if (is != null) {
+				try {
 					is.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
 
 		}
-		
+
 	}
-	
-	public static String loadFileIntoString(File file){
+
+	public static String loadFileIntoString(File file) {
 		String fString = null;
 		FileInputStream fis = null;
 
 		try {
 			fis = new FileInputStream(file);
-			int i = (int) file.length();			
+			int i = (int) file.length();
 			byte[] b = new byte[i];
-		   	fis.read(b);
+			fis.read(b);
 
 			ByteArrayOutputStream bfos = new ByteArrayOutputStream();
 			bfos.write(b);
-			
+
 			fString = bfos.toString("UTF-8");
-			
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			log.error(e);
 		} finally {
-			if(fis != null){
-				try{
+			if (fis != null) {
+				try {
 					fis.close();
-				}catch(IOException ioExc){
+				} catch (IOException ioExc) {
 					log.error(ioExc);
 				}
 			}
-			
+
 		}
-		
+
 		return fString;
 	}
 

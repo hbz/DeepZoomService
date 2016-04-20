@@ -30,11 +30,14 @@ import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 /**
  * Class TestConfiguration
  * 
- * <p><em>Title: </em></p>
- * <p>Description: </p>
+ * <p>
+ * <em>Title: </em>
+ * </p>
+ * <p>
+ * Description:
+ * </p>
  * 
- * @author aquast, email
- * creation date: 05.08.2013
+ * @author aquast, email creation date: 05.08.2013
  *
  */
 public class TestConfiguration {
@@ -43,10 +46,10 @@ public class TestConfiguration {
 	private static Logger log = Logger.getLogger(TestConfiguration.class);
 
 	@Test
-	public void testConfiguration(){
+	public void testConfiguration() {
 
-		//Configuration conf = new Configuration();
-		//Configuration.initLog();
+		// Configuration conf = new Configuration();
+		// Configuration.initLog();
 		log.info(Configuration.getTempDirUrl());
 		log.info(Configuration.getResultDirUrl());
 		log.info(Configuration.getTempDirPath());
@@ -54,19 +57,21 @@ public class TestConfiguration {
 		log.info(Configuration.getWorkingDir());
 		log.info(System.getProperty("user.dir"));
 	}
-	
+
 	/**
-	 * <p><em>Title: </em></p>
-	 * <p>Description: </p>
+	 * <p>
+	 * <em>Title: </em>
+	 * </p>
+	 * <p>
+	 * Description:
+	 * </p>
 	 * 
-	 * @param args 
+	 * @param args
 	 */
 	public static void main(String[] args) {
 
 		TestConfiguration testConf = new TestConfiguration();
 		testConf.testConfiguration();
-		
-		
-		
+
 	}
 }
