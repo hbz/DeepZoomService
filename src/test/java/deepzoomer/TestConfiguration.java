@@ -53,7 +53,8 @@ public class TestConfiguration {
 		String protocol = "http";
 		String host = "localhost";
 		String port = "8080";
-		String path = "deepzoom";
+		String path = "deepzoom-test";
+		String applicationName="deepzoom";
 		Assert.assertEquals(tempDir, Globals.conf.tempDir);
 		Assert.assertEquals(resultDir, Globals.conf.resultDir);
 		Assert.assertEquals(workingDir, Globals.conf.workingDir);
@@ -64,6 +65,6 @@ public class TestConfiguration {
 		Assert.assertEquals(workingDir + "/" + path + "/" + tempDir, Globals.conf.getTempDirPath());
 		Assert.assertEquals(workingDir + "/" + path + "/" + resultDir, Globals.conf.getResultDirPath());
 		Assert.assertEquals(Globals.conf.getServiceUrl() + resultDir, Globals.conf.getResultDirUrl());
-		Assert.assertEquals(protocol + ".//" + host + ":"+port+"/" + path, Globals.conf.getServiceUrl());
+		Assert.assertEquals(protocol + "://" + host + ":"+port+"/" + applicationName, Globals.conf.getServiceUrl());
 	}
 }

@@ -16,13 +16,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.xmlbeans.XmlException;
-import org.apache.xmlbeans.XmlObject;
-
 import com.sun.jersey.api.json.JSONWithPadding;
 
 import java.io.File;
-import java.io.IOException;
 
 
 
@@ -40,7 +36,6 @@ public class DeepZoomerUrlService {
 	@POST
 	@Produces({MediaType.APPLICATION_JSON})
 	public DziResult getDZI(@QueryParam("imageUrl") String imageUrl){
-		
 		DziResult dziRes = null;		
 		dziRes = getDziResult(imageUrl);
 		return dziRes;
@@ -59,16 +54,14 @@ public class DeepZoomerUrlService {
 	private DziResult getDziResult(String imageUrl){
 		DziResult dzi = null;
 		
-		String fileName = imageUrl.replaceAll("\\W", "").replace("https", "")
-				.replace("http", "").replace("file", "");
+		String fileName = Globals.createFileName(imageUrl);
 		log.info(fileName);
 		if (new File(Globals.conf.getResultDirPath()+"/"+ fileName + ".dzi").isFile()){
 			//nothing to do here
-			log.debug("use cached DeepZoom-Images");
+			log.info("use cached DeepZoom-Images");
 		} else {
-			log.debug("create new DeepZoom-Images");
-			log.info(FileUtil.saveUrlToFile(fileName, imageUrl));
-			
+			log.info("create new DeepZoom-Images");
+			FileUtil.saveUrlToFile(fileName, imageUrl);
 			VipsRunner vips = new VipsRunner();
 			vips.executeVips("", fileName);
 		}

@@ -17,6 +17,7 @@ public class Configuration {
 	public String host;
 	public String path;
 	public String port;
+	public String applicationName="deepzoom";
 
 	public Configuration() {
 		try {
@@ -49,6 +50,6 @@ public class Configuration {
 	}
 
 	public String getServiceUrl() {
-		return protocol + ".//" + host + ":"+port + "/" + path;
+		return protocol + "://" + host + ":"+port + "/" + applicationName;
 	}
 }

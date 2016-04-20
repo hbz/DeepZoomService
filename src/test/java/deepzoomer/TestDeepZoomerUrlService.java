@@ -6,6 +6,7 @@ package deepzoomer;
 import java.io.File;
 
 import org.apache.log4j.Logger;
+import org.junit.After;
 import org.junit.Test;
 
 import de.nrw.hbz.deepzoomer.fileUtil.FileUtil;
@@ -26,9 +27,6 @@ public class TestDeepZoomerUrlService {
 
 	@Test
 	public void TestGetDzi(){
-		Globals.conf.workingDir="/tmp";
-		log.info("Delete "+Globals.conf.workingDir+"/"+Globals.conf.path+" on exit.");
-		new File(Globals.conf.workingDir+"/"+Globals.conf.path).deleteOnExit();
 		log.info("Create "+Globals.conf.getResultDirPath());
 		new File(Globals.conf.getResultDirPath()).mkdirs();
 		log.info("Create "+Globals.conf.getTempDirPath());
@@ -50,5 +48,9 @@ public class TestDeepZoomerUrlService {
 		FileUtil.saveUrlToFile(fileName, url); 
 	}
 	
+	@After 
+	public void cleanUp(){
+		new File(Globals.conf.workingDir).delete();
+	}
 
 }
