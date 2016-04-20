@@ -59,8 +59,8 @@ public class FileUtil {
 		BufferedOutputStream bos = null;
 		try{
 			//System.out.println("Base64 kodierter Stream: " + stream.length());
-			inputFile = new File(Globals.conf.getTempDirPath() + fileName);
-			log.debug(Globals.conf.getTempDirPath());
+			inputFile = new File(Globals.conf.getTempDirPath()+"/" + fileName);
+			log.debug(Globals.conf.getTempDirPath()+"/");
 			fos = new FileOutputStream(inputFile);
 			bos = new BufferedOutputStream(fos);			
 			bos.write(Base64.decodeBase64(stream.getBytes("UTF-8")));
@@ -98,7 +98,7 @@ public class FileUtil {
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;
 		try{
-			inputFile = new File(Globals.conf.getResultDirPath() + fileName);
+			inputFile = new File(Globals.conf.getResultDirPath()+"/" + fileName);
 			fos = new FileOutputStream(inputFile);
 			bos = new BufferedOutputStream(fos);			
 			bos.write(contentString.getBytes("UTF-8"));
@@ -134,9 +134,9 @@ public class FileUtil {
 	public static String appendStringToResultFile(String fileName, String contentString){
 		FileWriter fw = null;
 		try{
-			inputFile = new File(Globals.conf.getResultDirPath() + fileName);
+			inputFile = new File(Globals.conf.getResultDirPath()+"/" + fileName);
 			fw = new FileWriter(inputFile, true);
-			log.info(Globals.conf.getResultDirPath());
+			log.info(Globals.conf.getResultDirPath()+"/");
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.append(contentString);
 			bw.flush();
@@ -300,7 +300,7 @@ public class FileUtil {
 	 */
 	public static void saveInputStreamToTempFile(InputStream is, String fileName){
 
-		File outputFile = new File(Globals.conf.getTempDirPath() + fileName);
+		File outputFile = new File(Globals.conf.getTempDirPath()+"/" + fileName);
 		BufferedInputStream bis = new BufferedInputStream(is);
 		BufferedOutputStream bos = null;
 		FileOutputStream fos = null;

@@ -2,6 +2,7 @@
  * 
  */
 package de.nrw.hbz.deepzoomer.serviceImpl;
+import java.io.File;
 import java.util.Properties;
 
 /**
@@ -20,7 +21,7 @@ public class Configuration {
 	public Configuration() {
 		try {
 			Properties props = new Properties();
-			props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("conf/deepzoomer.cfg"));
+			props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("deepzoomer.cfg"));
 			tempDir = props.getProperty("tempDir");
 			resultDir = props.getProperty("resultDir");
 			workingDir = props.getProperty("workingDir");
@@ -28,17 +29,19 @@ public class Configuration {
 			host = props.getProperty("host");
 			path = props.getProperty("path");
 			port = props.getProperty("port");
+			new File(getResultDirPath()).mkdirs();
+			new File(getTempDirPath()).mkdirs();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
 
 	public String getTempDirPath() {
-		return workingDir + "/" + path + "/" + resultDir;
+		return workingDir + "/" + path + "/" + tempDir;
 	}
 
 	public String getResultDirPath() {
-		return workingDir + "/" + path + "/" + tempDir + "/";
+		return workingDir + "/" + path + "/" + resultDir ;
 	}
 
 	public String getResultDirUrl() {

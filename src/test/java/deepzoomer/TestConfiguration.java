@@ -61,8 +61,8 @@ public class TestConfiguration {
 		Assert.assertEquals(host, Globals.conf.host);
 		Assert.assertEquals(port, Globals.conf.port);
 		Assert.assertEquals(path, Globals.conf.path);
-		Assert.assertEquals(workingDir + "/" + path + "/" + resultDir, Globals.conf.getTempDirPath());
-		Assert.assertEquals(workingDir + "/" + path + "/" + tempDir + "/", Globals.conf.getResultDirPath());
+		Assert.assertEquals(workingDir + "/" + path + "/" + tempDir, Globals.conf.getTempDirPath());
+		Assert.assertEquals(workingDir + "/" + path + "/" + resultDir, Globals.conf.getResultDirPath());
 		Assert.assertEquals(Globals.conf.getServiceUrl() + resultDir, Globals.conf.getResultDirUrl());
 		Assert.assertEquals(protocol + ".//" + host + ":"+port+"/" + path, Globals.conf.getServiceUrl());
 	}

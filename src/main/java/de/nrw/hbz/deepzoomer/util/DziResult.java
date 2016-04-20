@@ -57,7 +57,7 @@ public class DziResult {
 			jCon = JAXBContext.newInstance(contextPath);
 			Unmarshaller jConUn = jCon.createUnmarshaller();
 			
-			Image dziObj = (Image) jConUn.unmarshal(new File(Globals.conf.getResultDirPath()+ parseFileName + ".dzi"));		
+			Image dziObj = (Image) jConUn.unmarshal(new File(Globals.conf.getResultDirPath()+"/"+ parseFileName + ".dzi"));		
 			Url = Globals.conf.getResultDirUrl() + parseFileName + "_files/";
 			Format = dziObj.getFormat();
 			TileSize = dziObj.getTileSize();

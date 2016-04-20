@@ -39,8 +39,8 @@ public class VipsRunner {
 				);
 		String executeString = new String(programPath + " " 
 				+ defaultParams 
-				+ " " + Globals.conf.getTempDirPath() + fileName 
-				+ " " + Globals.conf.getResultDirPath() + fileName
+				+ " " + Globals.conf.getTempDirPath()+"/" + fileName 
+				+ " " + Globals.conf.getResultDirPath()+"/" + fileName
 				); 
 
 		log.info("The execute String: " + executeString);
@@ -56,7 +56,7 @@ public class VipsRunner {
             while ((line = br.readLine()) != null){
                 lineBuffer.append(line + "\n");
             }
-            log.debug("STOUT: " + lineBuffer.toString());
+            log.info("STOUT: " + lineBuffer.toString());
             log.info("Exit State: " + exitState);
             stoutStr = lineBuffer.toString();
             exitStateStr = Integer.toString(exitState);
@@ -64,8 +64,8 @@ public class VipsRunner {
 			log.error(Exc);
 		}finally{
 			//unlink temp file
-			if(new File(Globals.conf.getTempDirPath() + fileName).isFile()){
-				new File(Globals.conf.getTempDirPath() + fileName).delete();
+			if(new File(Globals.conf.getTempDirPath() +"/"+ fileName).isFile()){
+				new File(Globals.conf.getTempDirPath()+"/" + fileName).delete();
 			}
 			
 		}
