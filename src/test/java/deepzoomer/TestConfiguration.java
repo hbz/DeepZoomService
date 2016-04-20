@@ -49,7 +49,7 @@ public class TestConfiguration {
 	public void testConfiguration() {
 		String tempDir = "temp";
 		String resultDir = "tilesCache";
-		String workingDir = "/var/lib/tomcat7/webapps/";
+		String workingDir = "/tmp";
 		String protocol = "http";
 		String host = "localhost";
 		String port = "8080";
