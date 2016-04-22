@@ -4,6 +4,7 @@
 package de.nrw.hbz.deepzoomer.util;
 
 import java.io.File;
+import java.io.StringWriter;
 import java.util.ArrayList;
 
 import javax.xml.bind.JAXBContext;
@@ -13,6 +14,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import de.nrw.hbz.deepzoomer.dzi.Image;
 import de.nrw.hbz.deepzoomer.serviceImpl.Globals;
@@ -54,7 +56,7 @@ public class DziResult {
 
 			Image dziObj = (Image) jConUn.unmarshal(new File(
 					Globals.conf.getResultDirPath() + "/" + parseFileName + ".dzi"));
-			Url = Globals.conf.getResultDirUrl() + parseFileName + "_files/";
+			Url = Globals.conf.getResultDirUrl() + "/" + parseFileName + "_files/";
 			Format = dziObj.getFormat();
 			TileSize = dziObj.getTileSize();
 			Overlap = dziObj.getOverlap();
@@ -199,4 +201,14 @@ public class DziResult {
 
 	}
 
+	public String toString() {
+		ObjectMapper mapper = new ObjectMapper();
+		StringWriter w = new StringWriter();
+		try {
+			mapper.writeValue(w, this);
+		} catch (Exception e) {
+			return super.toString();
+		}
+		return w.toString();
+	}
 }

@@ -66,7 +66,7 @@ public class TestConfiguration {
 				Globals.conf.getTempDirPath());
 		Assert.assertEquals(workingDir + "/" + path + "/" + resultDir,
 				Globals.conf.getResultDirPath());
-		Assert.assertEquals(Globals.conf.getServiceUrl() + resultDir,
+		Assert.assertEquals(Globals.conf.getServiceUrl() + "/" + resultDir,
 				Globals.conf.getResultDirUrl());
 		Assert.assertEquals(
 				protocol + "://" + host + ":" + port + "/" + applicationName,

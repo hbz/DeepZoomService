@@ -48,7 +48,7 @@ public class Configuration {
 	}
 
 	public String getResultDirUrl() {
-		return Globals.conf.getServiceUrl() + resultDir;
+		return Globals.conf.getServiceUrl() + "/" + resultDir;
 	}
 
 	public String getServiceUrl() {

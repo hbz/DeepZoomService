@@ -35,8 +35,6 @@ public class TestDziResult {
 				+ Globals.createFileName(url.getPath()) + "_files");
 		Assert.assertTrue(dziFile.exists());
 		Assert.assertTrue(filesDir.exists());
-		// dziFile.deleteOnExit();
-		// filesDir.deleteOnExit();
 	}
 
 	@After
