@@ -25,48 +25,51 @@ package deepzoomer;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
+import de.nrw.hbz.deepzoomer.serviceImpl.Globals;
+import junit.framework.Assert;
 
 /**
  * Class TestConfiguration
  * 
- * <p><em>Title: </em></p>
- * <p>Description: </p>
+ * <p>
+ * <em>Title: </em>
+ * </p>
+ * <p>
+ * Description:
+ * </p>
  * 
- * @author aquast, email
- * creation date: 05.08.2013
+ * @author aquast, email creation date: 05.08.2013
  *
  */
 public class TestConfiguration {
 
-	// Initiate Logger for TestConfiguration
 	private static Logger log = Logger.getLogger(TestConfiguration.class);
 
 	@Test
-	public void testConfiguration(){
-
-		//Configuration conf = new Configuration();
-		//Configuration.initLog();
-		log.info(Configuration.getTempDirUrl());
-		log.info(Configuration.getResultDirUrl());
-		log.info(Configuration.getTempDirPath());
-		log.info(Configuration.getResultDirPath());
-		log.info(Configuration.getWorkingDir());
-		log.info(System.getProperty("user.dir"));
-	}
-	
-	/**
-	 * <p><em>Title: </em></p>
-	 * <p>Description: </p>
-	 * 
-	 * @param args 
-	 */
-	public static void main(String[] args) {
-
-		TestConfiguration testConf = new TestConfiguration();
-		testConf.testConfiguration();
-		
-		
-		
+	public void testConfiguration() {
+		String tempDir = "temp";
+		String resultDir = "tilesCache";
+		String workingDir = "/tmp";
+		String protocol = "http";
+		String host = "localhost";
+		String port = "8080";
+		String path = "deepzoom-test";
+		String applicationName = "deepzoom";
+		Assert.assertEquals(tempDir, Globals.conf.tempDir);
+		Assert.assertEquals(resultDir, Globals.conf.resultDir);
+		Assert.assertEquals(workingDir, Globals.conf.workingDir);
+		Assert.assertEquals(protocol, Globals.conf.protocol);
+		Assert.assertEquals(host, Globals.conf.host);
+		Assert.assertEquals(port, Globals.conf.port);
+		Assert.assertEquals(path, Globals.conf.path);
+		Assert.assertEquals(workingDir + "/" + path + "/" + tempDir,
+				Globals.conf.getTempDirPath());
+		Assert.assertEquals(workingDir + "/" + path + "/" + resultDir,
+				Globals.conf.getResultDirPath());
+		Assert.assertEquals(Globals.conf.getServiceUrl() + "/" + resultDir,
+				Globals.conf.getResultDirUrl());
+		Assert.assertEquals(
+				protocol + "://" + host + ":" + port + "/" + applicationName,
+				Globals.conf.getServiceUrl());
 	}
 }

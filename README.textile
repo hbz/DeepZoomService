@@ -1,3 +1,5 @@
+!https://travis-ci.org/hbz/DeepZoomService.png?branch=master!:https://travis-ci.org/hbz/DeepZoomService
+
 h1. About
 
 The hbz DeepZoom-Tool implements a RESTful service generates, caches and provides pyramidal (deep zoom able) tiles. It provides a JSONP object which can integrated via OpenSeadragen (www.openseadragon.github.io) into web pages for displaying images in a zoomable format.
@@ -15,19 +17,15 @@ h2. Prerequisites
 
 VIPS can be installed from the Software Repositories of many Linux Distributions (not included in SLES 11 and 12).
 
-h2. Quick Install
-
-# Get with: git clone https://github.com/hbz/DeepZoomService.git
-# Deploy with: mvn clean test war:war
-# Copy deepzoom.war into the tomcat webapp-dir
-# Open Browser and run http://localhost:8080/deepzoom/example to get an example web page
-
 h2. Install
 
 # Get with: git clone https://github.com/hbz/DeepZoomService.git
-# Create web accessible temp and tilesCache-Dir outside tomcat 
-# Change deepzoomer.cfg according our Server settings
-# Setup Apache accordingly
+# cd DeepZoomService
+# cp src/main/resources/deepzoomer.cfg.template src/main/resources/deepzoomer.cfg
+# editor src/main/resources/deepzoomer.cfg
+# Deploy with: mvn clean test war:war
+# Copy deepzoom.war into the tomcat webapp-dir
+# Open Browser and run http://localhost:8080/deepzoom/example to get an example web page
 
 
 h1. Usage
