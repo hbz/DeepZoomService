@@ -37,6 +37,13 @@ public class DeepZoomerUrlService {
 	private static Logger log = Logger.getLogger(DeepZoomerUrlService.class);
 
 	//  Jersey annotated Methods 	
+
+	/**
+	 * POST-implementation of getDzi-Service, for using RESTful please consider to use GET
+	 *  
+	 * @param imageUrl
+	 * @return DziResult
+	 */
 	@POST
 	@Produces({MediaType.APPLICATION_JSON})
 	public DziResult getDZI(@QueryParam("imageUrl") String imageUrl){
@@ -46,6 +53,14 @@ public class DeepZoomerUrlService {
 		return dziRes;
 	}
 	
+	/**
+	 * GET-implementation of getDzi-Service. Returns OpenSeadragon liable dzi-Format 
+	 * as JSONP
+	 *  
+	 * @param callback
+	 * @param imageUrl
+	 * @return
+	 */
 	@GET
 	@Produces({"application/x-javascript", MediaType.APPLICATION_JSON})
 	public JSONWithPadding getDZIJsonP(
@@ -56,6 +71,13 @@ public class DeepZoomerUrlService {
 	}
 	
 	
+	/**
+	 * Main method to call VipsRunner for MapTiles creation and call DziResult for 
+	 * the dzi-response required by OpenSeadragon
+	 *   
+	 * @param imageUrl
+	 * @return
+	 */
 	private DziResult getDziResult(String imageUrl){
 		DziResult dzi = null;
 		

@@ -16,9 +16,9 @@ Service takes an Url or an Image file and produces a set of Image Tiles (pyramid
 
 Param: imageUrl the Url off an Image to process
 
-Returns: a JSONP Object bearing all necessary information to produce a zzomable Image within an appropriate Viewer.   
+Returns: a JSONP Object bearing all necessary information to produce a zoomable Image within an appropriate Viewer.   
 
-h4. Response Formmats
+h4. Response Formats
 
 application/json
 

@@ -9,11 +9,11 @@ h1. Install
 h2. Prerequisites
 
 * Maven
-* Java SDK, Version 1.7 (openjdk)
-* VIPS
-* Tomcat, Version 6
+* Java SDK, Version 1.7 and higher (openjdk)
+* VIPS, Version 7.30 or higher required! 
+* Tomcat, Version 6 and higher
 
-VIPS can be installed from the Software Repositories of many Linux Distributions (not included in SLES 11 and 12).
+VIPS can be installed from the Software Repositories of many Linux Distributions (not included in SLES 11 and 12). Please be aware that VIPS versions lower than Version 7.30 do not provide the dzsave-Method required for the DeepZoom-Tool 
 
 h2. Quick Install
 
