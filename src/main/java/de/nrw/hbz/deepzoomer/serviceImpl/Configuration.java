@@ -52,6 +52,7 @@ public class Configuration {
 		defProp.setProperty("protocol", "http");
 		defProp.setProperty("port", "8080");
 		defProp.setProperty("path", "deepzoom");
+		defProp.setProperty("wdPath", "deepzoom");
 		defProp.setProperty("tempDir", "temp");
 		defProp.setProperty("resultDir", "tilesCache");
 		defProp.setProperty("userDir", "all");
@@ -78,13 +79,13 @@ public class Configuration {
 	private static void setResultDirPath(){
 		//resultDirPath = System.getProperty("user.dir") + sysProp.getProperty("resultDir") + "/";
 		resultDirPath = sysProp.getProperty("workingDir") 
-				+ sysProp.getProperty("path") + "/" + sysProp.getProperty("resultDir") + "/";
+				+ sysProp.getProperty("wdPath") + "/" + sysProp.getProperty("resultDir") + "/";
 	}
 
 	private static void setTempDirPath(){
 		//tempDirPath = System.getProperty("user.dir") + sysProp.getProperty("tempDir") + "/";
 		tempDirPath = sysProp.getProperty("workingDir") 
-				+ sysProp.getProperty("path") + "/" + sysProp.getProperty("tempDir") + "/";
+				+ sysProp.getProperty("wdPath") + "/" + sysProp.getProperty("tempDir") + "/";
 	}
 
 	public static void loadConfigurationFile(){
