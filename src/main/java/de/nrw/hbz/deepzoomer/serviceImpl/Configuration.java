@@ -44,6 +44,7 @@ public class Configuration {
 		setResultDirPath();
 		setTempDirPath();
 		setServiceUrl();
+		setDataUrl();
 		setResultDirUrl();
 		setTempDirUrl();
 	}
