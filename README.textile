@@ -18,6 +18,7 @@ VIPS can be installed from the Software Repositories of many Linux Distributions
 h2. Quick Install
 
 # Get with: git clone https://github.com/hbz/DeepZoomService.git
+# Check in src/main/resources/conf/deepzoom.cfg that workingDir Property is set to absolute path to webapp directory (this bis needed to changed if you want to use a data dirextory outside of tomcat webapp
 # Deploy with: mvn clean test war:war
 # Copy deepzoom.war into the tomcat webapp-dir
 # Open Browser and run http://localhost:8080/deepzoom/example to get an example web page
@@ -25,8 +26,9 @@ h2. Quick Install
 h2. Install
 
 # Get with: git clone https://github.com/hbz/DeepZoomService.git
-# Create web accessible temp and tilesCache-Dir outside tomcat 
-# Change deepzoomer.cfg according our Server settings
+# Create web accessible temp and tilesCache directory outside tomcat's webapp directory. This directories must be accessible by tomcat-user
+# Use appropriate context.xml to configure tomcat for taking this workingDir into account. 
+# Change deepzoomer.cfg according our Server settings: workingDir should be the directory containing temp and tilesCache dirs. wdPath is the name of context: e.g. /workingDir/wdPath/tempDir
 # Setup Apache accordingly
 
 

@@ -30,6 +30,7 @@ public class Configuration {
 	private static Properties sysProp = null;
 	
 	private static String serviceUrl = null;
+	private static String dataUrl = null;
 	private static String tempDirUrl = null;
 	private static String resultDirUrl = null;
 
@@ -43,6 +44,7 @@ public class Configuration {
 		setResultDirPath();
 		setTempDirPath();
 		setServiceUrl();
+		setDataUrl();
 		setResultDirUrl();
 		setTempDirUrl();
 	}
@@ -52,6 +54,7 @@ public class Configuration {
 		defProp.setProperty("protocol", "http");
 		defProp.setProperty("port", "8080");
 		defProp.setProperty("path", "deepzoom");
+		defProp.setProperty("wdPath", "deepzoom");
 		defProp.setProperty("tempDir", "temp");
 		defProp.setProperty("resultDir", "tilesCache");
 		defProp.setProperty("userDir", "all");
@@ -61,11 +64,11 @@ public class Configuration {
 	}
 
 	private static void setTempDirUrl(){
-		 tempDirUrl = serviceUrl + sysProp.getProperty("tempDir") + "/";
+		 tempDirUrl = dataUrl + sysProp.getProperty("tempDir") + "/";
 	}
 	
 	private static void setResultDirUrl(){
-		resultDirUrl = serviceUrl + sysProp.getProperty("resultDir")  + "/";
+		resultDirUrl = dataUrl + sysProp.getProperty("resultDir")  + "/";
 		
 	}
 	
@@ -75,16 +78,22 @@ public class Configuration {
 				+ sysProp.getProperty("path") + "/"; 
 	}
 
+	private static void setDataUrl(){
+		dataUrl = sysProp.getProperty("protocol") + "://" + sysProp.getProperty("host") + ":" 
+				+ sysProp.getProperty("port") + "/"
+				+ sysProp.getProperty("wdPath") + "/"; 
+	}
+
 	private static void setResultDirPath(){
 		//resultDirPath = System.getProperty("user.dir") + sysProp.getProperty("resultDir") + "/";
 		resultDirPath = sysProp.getProperty("workingDir") 
-				+ sysProp.getProperty("path") + "/" + sysProp.getProperty("resultDir") + "/";
+				+ sysProp.getProperty("wdPath") + "/" + sysProp.getProperty("resultDir") + "/";
 	}
 
 	private static void setTempDirPath(){
 		//tempDirPath = System.getProperty("user.dir") + sysProp.getProperty("tempDir") + "/";
 		tempDirPath = sysProp.getProperty("workingDir") 
-				+ sysProp.getProperty("path") + "/" + sysProp.getProperty("tempDir") + "/";
+				+ sysProp.getProperty("wdPath") + "/" + sysProp.getProperty("tempDir") + "/";
 	}
 
 	public static void loadConfigurationFile(){
