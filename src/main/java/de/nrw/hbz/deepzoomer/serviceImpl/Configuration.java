@@ -30,6 +30,7 @@ public class Configuration {
 	private static Properties sysProp = null;
 	
 	private static String serviceUrl = null;
+	private static String dataUrl = null;
 	private static String tempDirUrl = null;
 	private static String resultDirUrl = null;
 
@@ -62,11 +63,11 @@ public class Configuration {
 	}
 
 	private static void setTempDirUrl(){
-		 tempDirUrl = serviceUrl + sysProp.getProperty("tempDir") + "/";
+		 tempDirUrl = dataUrl + sysProp.getProperty("tempDir") + "/";
 	}
 	
 	private static void setResultDirUrl(){
-		resultDirUrl = serviceUrl + sysProp.getProperty("resultDir")  + "/";
+		resultDirUrl = dataUrl + sysProp.getProperty("resultDir")  + "/";
 		
 	}
 	
@@ -74,6 +75,12 @@ public class Configuration {
 		serviceUrl = sysProp.getProperty("protocol") + "://" + sysProp.getProperty("host") + ":" 
 				+ sysProp.getProperty("port") + "/"
 				+ sysProp.getProperty("path") + "/"; 
+	}
+
+	private static void setDataUrl(){
+		dataUrl = sysProp.getProperty("protocol") + "://" + sysProp.getProperty("host") + ":" 
+				+ sysProp.getProperty("port") + "/"
+				+ sysProp.getProperty("wdPath") + "/"; 
 	}
 
 	private static void setResultDirPath(){
