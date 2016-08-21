@@ -27,18 +27,19 @@ Quick Install is thought for testing purposes. With this configuration free inst
 
 h2. Install
 
-For running the service on production environment it's highly recommended to store tiles outside the deployed servlet container. For that you have to create directories outside tomcats webapps directory and contextes for tomcat to access these directories. 
-
-Its also recommended to generate an apache vhost to access the service via proxy or rewrite. 
+For running the service on production environment it's highly recommended to store tiles outside the deployed servlet container. For that you have to create directories outside tomcats webapps directory and contextes for tomcat to access these directories [1]. 
 
 # Get with: git clone https://github.com/hbz/DeepZoomService.git
-# Create web accessible temp and tilesCache directory outside tomcat's webapp directory [1].
+# Create web accessible temp and tilesCache directory outside tomcat's webapp directory [2].
 #* These directories must be accessible by tomcat-user. 
 #* Use appropriate context.xml to configure tomcat for taking this workingDir into account. 
 # Change deepzoomer.cfg according our Server settings: workingDir should be the directory containing temp and tilesCache dirs. wdPath is the name of context: e.g. /workingDir/wdPath/tempDir
-# Setup Apache accordingly
 
-fn1. For ubuntu compare with implementation of /usr/share/tomcat7-example via /etc/tomcat7/Catalina/example.xml
+Its also recommended to generate an apache vhost to access the service via proxy or rewrite. 
+
+fn1. For ubuntu also compare with implementation of /usr/share/tomcat7-example via /etc/tomcat7/Catalina/example.xml
+
+fn2. See CONFIG.textile for detailed example
 
 h1. Usage
 
@@ -153,8 +154,6 @@ function deepZoomService (){
 </script>
 p. 
 
-
-For jQuery, jQuery-UI and OpenSeadragon you also can use the remote the js libraries, which is not recommended for production environments
 
 h1. Known Issues
 

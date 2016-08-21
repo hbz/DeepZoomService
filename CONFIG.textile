@@ -1,0 +1,68 @@
+h1. About
+
+Example for Configuration of deepzoom service
+
+h1. Example: Configure on Ubuntu with Tomcat7
+
+To run the deepzoom service on production it's advised to configure directories for temp files and cached tiles outside the webapp directory. As deepzoom does not provide an install script some steps have to be done manually.
+
+The example given relies on the ubuntu convention for contextes outside the webapp. Pathes can be configured to your needs 
+
+h3. 1. Create base directory for temp files and cached tiles:
+
+pre.. sudo mkdir /usr/share/tomcat7-dzdata
+sudo mkdir /usr/share/tomcat7-dzdata/dzdata
+sudo mkdir /usr/share/tomcat7-dzdata/dzdata/temp
+sudo mkdir /usr/share/tomcat7-dzdata/dzdata/tilesCache
+sudo chown -r tomcat7:tomcat7 /usr/share/tomcat7-dzdata
+
+
+h3. 2. Create context as dzdata.xml in /etc/tomcat7/Catalina/localhost/
+
+pre.. sudo touch /etc/tomcat7/Catalina/localhost/dzdata.xml
+sudo echo "<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<Context path="/dzdata" 
+	docBase="/usr/share/tomcat7-dzdata/dzdata" 
+	antiResourceLocking="false" privileged="true" />" >> /etc/tomcat7/Catalina/localhost/dzdata.xml
+
+h3. 3. Change deepzoom.cfg accordingly
+
+pre.. # config file for the hbz deepzoomer Service based on 
+# VIPS
+tempDir = temp
+resultDir = tilesCache
+
+# Server config
+workingDir = /usr/share/tomcat7-dzdata/
+
+# Client config
+protocol = http
+host = localhost
+port = 8080
+path = deepzoom
+# change wdPath if you want to have your cached data outside webapp dir
+wdPath = dzdata
+ 
+
+
+
+
+  
+
+   
