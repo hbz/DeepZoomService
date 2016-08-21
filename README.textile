@@ -39,7 +39,7 @@ Its also recommended to generate an apache vhost to access the service via proxy
 
 fn1. For ubuntu also compare with implementation of /usr/share/tomcat7-example via /etc/tomcat7/Catalina/example.xml
 
-fn2. See CONFIG.textile for detailed example
+fn2. See "CONFIG.textile":https://github.com/hbz/DeepZoomService/blob/master/CONFIG.textile for detailed example
 
 h1. Usage
 
