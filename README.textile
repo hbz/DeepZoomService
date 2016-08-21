@@ -17,24 +17,32 @@ VIPS can be installed from the Software Repositories of many Linux Distributions
 
 h2. Quick Install
 
+Quick Install is thought for testing purposes. With this configuration free install you can run the service without much efforts. Quick Install means data for tiles will be chached inside the deployed servlet container. Its not recommended to use Quick Install for production environment.
+
 # Get with: git clone https://github.com/hbz/DeepZoomService.git
-# Check in src/main/resources/conf/deepzoom.cfg that workingDir Property is set to absolute path to webapp directory (this bis needed to changed if you want to use a data dirextory outside of tomcat webapp
+# Check that src/main/resources/conf/deepzoom.cfg has workingDir Property is setted to absolute path to webapp directory (this is needed to be changed if you want to use a data diretory outside of tomcat webapp
 # Deploy with: mvn clean test war:war
 # Copy deepzoom.war into the tomcat webapp-dir
 # Open Browser and run http://localhost:8080/deepzoom/example to get an example web page
 
 h2. Install
 
+For running the service on production environment it's highly recommended to store tiles outside the deployed servlet container. For that you have to create directories outside tomcats webapps directory and contextes for tomcat to access these directories. 
+
+Its also recommended to generate an apache vhost to access the service via proxy or rewrite. 
+
 # Get with: git clone https://github.com/hbz/DeepZoomService.git
-# Create web accessible temp and tilesCache directory outside tomcat's webapp directory. This directories must be accessible by tomcat-user
-# Use appropriate context.xml to configure tomcat for taking this workingDir into account. 
+# Create web accessible temp and tilesCache directory outside tomcat's webapp directory [1].
+#* These directories must be accessible by tomcat-user. 
+#* Use appropriate context.xml to configure tomcat for taking this workingDir into account. 
 # Change deepzoomer.cfg according our Server settings: workingDir should be the directory containing temp and tilesCache dirs. wdPath is the name of context: e.g. /workingDir/wdPath/tempDir
 # Setup Apache accordingly
 
+fn1. For ubuntu compare with implementation of /usr/share/tomcat7-example via /etc/tomcat7/Catalina/example.xml
 
 h1. Usage
 
-To integrate the Service API into your web site, you have to proceed with 4 easy steps.
+To integrate the Service API into your web site, you have to proceed with 3 easy steps.
 
 h3. 1. Include required libraries into your web page 
 
@@ -48,7 +56,7 @@ pre.. <html>
 <body>
 p. 
 
-h3. 2. Use jQuery to identify the html-Elements that should make use of the service
+h3. 2. Use jQuery to identify the html-Elements that should make use of the service and add OpenSeadragon viewer to these html-Elements
 
 pre.. <div style="clear:both;">Kleine Auswahl von Bildern</div>
  <div>
@@ -75,11 +83,6 @@ function getImageUrl(){
 	$("li.dz_image_url").each(function(){
 		$(this).attr("style", "cursor: pointer;");
 		$(this).click(function(){
-p. 
-
-h3. 3. Add OpenSeadragon viewer to these html-Elements
-
-pre.. 
 			imageUrl = $(this).html(); 
 			$("#openseadragon1").dialog("open");
 			deepZoomService();
@@ -103,7 +106,7 @@ pre..
 
 p. 
 
-h3. Add OpenSeadragon code 
+h3. 3. Add OpenSeadragon code 
 
 pre.. 
 
@@ -153,9 +156,13 @@ p.
 
 For jQuery, jQuery-UI and OpenSeadragon you also can use the remote the js libraries, which is not recommended for production environments
 
+h1. Known Issues
+
+Because of an incompatibility between Java8 and tomcat6 JSP-Example pages are not deployed within environments running tomcat6 with Java8 (see "https://bugs.openjdk.java.net/browse/JDK-8155223":https://bugs.openjdk.java.net/browse/JDK-8155223 for details). Nevertheless services are running without trouble on these environments 
+
 h1. Releases
  
-Version 0.2.
+Version 0.3.
 
 
 h1. Status
@@ -166,3 +173,4 @@ h1. License
 
 LGPL
 Copyright 2015 Hochschulbibliothekszentrum des Landes Nordrhein-Westfalen (http://www.hbz-nrw.de)
+
