@@ -20,7 +20,7 @@ sudo chown -r tomcat7:tomcat7 /usr/share/tomcat7-dzdata
 h3. 2. Create context as dzdata.xml in /etc/tomcat7/Catalina/localhost/
 
 pre.. sudo touch /etc/tomcat7/Catalina/localhost/dzdata.xml
-sudo echo "<?xml version="1.0" encoding="UTF-8"?>
+sudo echo '<?xml version="1.0" encoding="UTF-8"?>
 <!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
@@ -39,7 +39,7 @@ sudo echo "<?xml version="1.0" encoding="UTF-8"?>
 -->
 <Context path="/dzdata" 
 	docBase="/usr/share/tomcat7-dzdata/dzdata" 
-	antiResourceLocking="false" privileged="true" />" >> /etc/tomcat7/Catalina/localhost/dzdata.xml
+	antiResourceLocking="false" privileged="true" />' >> /etc/tomcat7/Catalina/localhost/dzdata.xml
 
 h3. 3. Change deepzoom.cfg accordingly
 
