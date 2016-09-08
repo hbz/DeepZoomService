@@ -41,6 +41,7 @@ public class VipsRunner {
 				+ defaultParams 
 				+ " " + Configuration.getTempDirPath() + fileName 
 				+ " " + Configuration.getResultDirPath() + fileName
+				+ " " + paramString
 				); 
 
 		log.info("The execute String: " + executeString);
