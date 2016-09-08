@@ -4,7 +4,7 @@
 package deepzoomer;
 
 import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
-import de.nrw.hbz.deepzoomer.util.DziResult;
+import de.nrw.hbz.deepzoomer.util.ZoomifyResult;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -13,17 +13,17 @@ import org.junit.Test;
  * @author aquast
  *
  */
-public class TestDziResult {
+public class TestZoomifyResult {
 
 	// Initiate Logger for TestRestClient
-	private static Logger log = Logger.getLogger(TestDziResult.class);
+	private static Logger log = Logger.getLogger(TestZoomifyResult.class);
 	
 		@Test
 		public void getDziResult(){
 			Configuration.initLog();
-			String testFileName = "src/test/resources/dzi/dzi.xml";
-			DziResult dzi = new DziResult(testFileName);
-			log.info(dzi.toString());
+			String testPathName = "src/test/resources/zoomify";
+			ZoomifyResult zmi = new ZoomifyResult(testPathName);
+			log.info(zmi.toString());
 		}
 	
 	/**
@@ -34,7 +34,7 @@ public class TestDziResult {
 	 */
 	public static void main(String[] args) {
 		//Configuration.initLog();
-		TestDziResult dziResult= new TestDziResult();
+		TestZoomifyResult zmiResult= new TestZoomifyResult();
 		
 
 	}

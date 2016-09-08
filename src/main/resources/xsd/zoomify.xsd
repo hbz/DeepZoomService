@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified">
+  <xs:element name="IMAGE_PROPERTIES">
+  	<xs:complexType>
+  	<xs:attribute name="WIDTH" type="xs:string"></xs:attribute>
+  	<xs:attribute name="HEIGHT" type="xs:string"></xs:attribute>
+  	<xs:attribute name="NUMTILES" type="xs:string"></xs:attribute>
+  	<xs:attribute name="NUMIMAGES" type="xs:string"></xs:attribute>
+  	<xs:attribute name="VERSION" type="xs:string"></xs:attribute>
+  	<xs:attribute name="TILESIZE" type="xs:string"></xs:attribute>
+  	</xs:complexType>
+  </xs:element>
+</xs:schema>
