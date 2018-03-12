@@ -20,7 +20,7 @@ h2. Quick Install
 Quick Install is thought for testing purposes. With this configuration free install you can run the service without much efforts. Quick Install means data for tiles will be chached inside the deployed servlet container. Its not recommended to use Quick Install for production environment.
 
 # Get with: git clone https://github.com/hbz/DeepZoomService.git
-# Check that src/main/resources/conf/deepzoom.cfg has workingDir Property is setted to absolute path to webapp directory (this is needed to be changed if you want to use a data diretory outside of tomcat webapp
+# Check that src/main/resources/conf/deepzoomer.cfg has workingDir Property is setted to absolute path to webapp directory (this is needed to be changed if you want to use a data diretory outside of tomcat webapp
 # Deploy with: mvn clean test war:war
 # Copy deepzoom.war into the tomcat webapp-dir
 # Open Browser and run http://localhost:8080/deepzoom/example to get an example web page
