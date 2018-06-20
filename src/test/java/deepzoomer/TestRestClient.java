@@ -46,7 +46,7 @@ public class TestRestClient {
 	// Initiate Logger for TestRestClient
 	private static Logger log = Logger.getLogger(TestRestClient.class);
 	
-	private String uri = Configuration.getServiceUrl();
+	private String uri = Configuration.properties.getProperty("resultUrl");
 	
 	//@Test 
 	public void callRestFulServicePlain(){
@@ -54,12 +54,8 @@ public class TestRestClient {
 		WebResource wResource = client.resource(uri + "api/getDzi");
 		wResource = wResource
 				.queryParam("imageUrl", "http://phacops.spdns.de/opensd/sagrada_familia.png");
-		
 		log.info(wResource);
-		log.info(wResource.get(String.class).toString());
-		
-		
-		
+		log.info(wResource.get(String.class).toString());	
 	}
 
 	private Client createClient(){

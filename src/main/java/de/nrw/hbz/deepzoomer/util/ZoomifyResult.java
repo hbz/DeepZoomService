@@ -22,17 +22,6 @@ import de.nrw.hbz.deepzoomer.zoomify.IMAGEPROPERTIES;
  */
 @XmlRootElement(name = "IMAGE_PROPERTIES", namespace = "")
 public class ZoomifyResult {
-
-	public ZoomifyResult() {
-
-	}
-
-	public ZoomifyResult(String parsePathName) {
-
-		parseProperties(parsePathName);
-
-	}
-
 	// Initiate Logger for TestRestClient
 	private static Logger log = Logger.getLogger(ZoomifyResult.class);
 
@@ -43,17 +32,17 @@ public class ZoomifyResult {
 	private String Height = null;
 	private String Width = null;
 
-	private void parseProperties(String parsePathName) {
-
+	public ZoomifyResult() {}
+	
+	public ZoomifyResult(String path) {
 		String contextPath = "de.nrw.hbz.deepzoomer.zoomify";
 		JAXBContext jCon = null;
 		try {
 			jCon = JAXBContext.newInstance(contextPath);
 			Unmarshaller jConUn = jCon.createUnmarshaller();
-
 			IMAGEPROPERTIES zmiObj = (IMAGEPROPERTIES) jConUn
-					.unmarshal(new File(Configuration.getResultDirPath() + parsePathName + "/ImageProperties.xml"));
-			Url = Configuration.getResultDirUrl() + parsePathName;
+					.unmarshal(new File(Configuration.properties.getProperty("tilesDir")+File.separator + path + "/ImageProperties.xml"));
+			Url = Configuration.properties.getProperty("resultUrl") +"/"+ path;
 			TileSize = zmiObj.getTILESIZE();
 			Height = zmiObj.getHEIGHT();
 			Width = zmiObj.getWIDTH();

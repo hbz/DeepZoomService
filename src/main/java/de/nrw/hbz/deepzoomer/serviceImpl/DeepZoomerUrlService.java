@@ -20,8 +20,6 @@ import com.sun.jersey.api.json.JSONWithPadding;
 import de.nrw.hbz.deepzoomer.fileUtil.FileUtil;
 import de.nrw.hbz.deepzoomer.util.DziResult;
 
-
-
 /**
  * @author aquast
  *
@@ -32,65 +30,63 @@ public class DeepZoomerUrlService {
 	// Initiate Logger for PilotRunner
 	private static Logger log = Logger.getLogger(DeepZoomerUrlService.class);
 
-	//  Jersey annotated Methods 	
+	// Jersey annotated Methods
 
 	/**
-	 * POST-implementation of getDzi-Service, for using RESTful please consider to use GET
-	 *  
+	 * POST-implementation of getDzi-Service, for using RESTful please consider
+	 * to use GET
+	 * 
 	 * @param imageUrl
 	 * @return DziResult
 	 */
 	@POST
-	@Produces({MediaType.APPLICATION_JSON})
-	public DziResult getDZI(@QueryParam("imageUrl") String imageUrl){
-		
-		DziResult dziRes = null;		
+	@Produces({ MediaType.APPLICATION_JSON })
+	public DziResult getDZI(@QueryParam("imageUrl") String imageUrl) {
+
+		DziResult dziRes = null;
 		dziRes = getDziResult(imageUrl);
 		return dziRes;
 	}
-	
+
 	/**
-	 * GET-implementation of getDzi-Service. Returns OpenSeadragon liable dzi-Format 
-	 * as JSONP
-	 *  
+	 * GET-implementation of getDzi-Service. Returns OpenSeadragon liable
+	 * dzi-Format as JSONP
+	 * 
 	 * @param callback
 	 * @param imageUrl
 	 * @return
 	 */
 	@GET
-	@Produces({"application/x-javascript", MediaType.APPLICATION_JSON})
-	public JSONWithPadding getDZIJsonP(
-			@QueryParam("callback") @DefaultValue("fn") String callback,
+	@Produces({ "application/x-javascript", MediaType.APPLICATION_JSON })
+	public JSONWithPadding getDZIJsonP(@QueryParam("callback") @DefaultValue("fn") String callback,
 			@QueryParam("imageUrl") String imageUrl) {
 
 		return new JSONWithPadding(getDziResult(imageUrl), callback);
 	}
-	
-	
+
 	/**
-	 * Main method to call VipsRunner for MapTiles creation and call DziResult for 
-	 * the dzi-response required by OpenSeadragon
-	 *   
+	 * Main method to call VipsRunner for MapTiles creation and call DziResult
+	 * for the dzi-response required by OpenSeadragon
+	 * 
 	 * @param imageUrl
 	 * @return
 	 */
-	private DziResult getDziResult(String imageUrl){
+	private DziResult getDziResult(String imageUrl) {
 		DziResult dzi = null;
-		
-		String fileName = imageUrl.replaceAll("\\W", "").replace("https", "")
-				.replace("http", "").replace("file", "");
+
+		String fileName = imageUrl.replaceAll("\\W", "").replace("https", "").replace("http", "").replace("file", "");
 		log.info(fileName);
-		if (new File(Configuration.getResultDirPath()+ fileName + ".dzi").isFile()){
-			//nothing to do here
+		if (new File(Configuration.properties.getProperty("tilesDir") + File.separator + fileName + ".dzi").isFile()) {
+			// nothing to do here
 			log.debug("use cached DeepZoom-Images");
 		} else {
 			log.debug("create new DeepZoom-Images");
 			log.info(FileUtil.saveUrlToFile(fileName, imageUrl));
-			
+
 			VipsRunner vips = new VipsRunner();
 			vips.executeVips("", fileName);
 		}
-		dzi =  new DziResult(fileName);
+		dzi = new DziResult(fileName);
 		return dzi;
 	}
 }

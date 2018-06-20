@@ -80,7 +80,7 @@ public class ZoomifyUrlService {
 		String pathName = imageUrl.replaceAll("\\W", "").replace("https", "")
 				.replace("http", "").replace("file", "");
 		log.info(pathName);
-		if (new File(Configuration.getResultDirPath()+ pathName + "/ImageProperties.xml").isFile()){
+		if (new File(Configuration.properties.getProperty("tilesDir")+File.separator+ pathName + "/ImageProperties.xml").isFile()){
 			//nothing to do here
 			log.debug("use cached DeepZoom-Images");
 		} else {

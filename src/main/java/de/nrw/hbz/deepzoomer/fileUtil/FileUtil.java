@@ -67,7 +67,7 @@ public class FileUtil {
 	 */
 	public static String saveUrlToFile(String fileName, String url) {
 		try {
-			File inputFile = new File(Configuration.getTempDirPath() + "/" + fileName);
+			File inputFile = new File(Configuration.properties.getProperty("tempDir") + "/" + fileName);
 			Files.copy(getInputStreamFromUrl(new URL(url)), Paths.get(inputFile.toURI()), StandardCopyOption.REPLACE_EXISTING);
 			return inputFile.getName();
 		} catch (Exception e) {
