@@ -3,21 +3,19 @@
  */
 package de.nrw.hbz.deepzoomer.util;
 
-import javax.xml.bind.*;
-import javax.xml.bind.util.*;
+import java.io.File;
+import java.util.ArrayList;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.helpers.*;
 
 import org.apache.log4j.Logger;
 
 import de.nrw.hbz.deepzoomer.dzi.Image;
 import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Hashtable;
 
 
 /**

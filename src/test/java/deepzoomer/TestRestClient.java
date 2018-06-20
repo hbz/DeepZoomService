@@ -22,21 +22,14 @@
  */
 package deepzoomer;
 
-import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 import org.apache.log4j.Logger;
-import org.junit.Test;
-
-
-import java.net.URI;
-
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriBuilder;
 
 import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
+
+import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 
 /**
  * Class TestRestClient

@@ -3,14 +3,10 @@
  */
 package de.nrw.hbz.deepzoomer.serviceImpl;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-//import javax.servlet.ServletException;
-
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -22,10 +18,6 @@ import org.apache.log4j.PropertyConfigurator;
  */
 public class Configuration {
 	
-
-	// Initialize logger object 
-	private static Logger log = Logger.getLogger(Configuration.class);
-
 	private static Properties defProp = new Properties();
 	private static Properties sysProp = null;
 	

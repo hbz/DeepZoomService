@@ -22,16 +22,22 @@
  */
 package de.nrw.hbz.deepzoomer.fileUtil;
 
-import org.apache.log4j.Logger;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
 import org.apache.commons.codec.binary.Base64;
+import org.apache.log4j.Logger;
 
 import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
-
-import java.util.List;
-import java.util.Vector;
-import java.io.*;
-import java.net.URL;
-import java.net.MalformedURLException;
 
 
 /**

@@ -3,11 +3,11 @@
  */
 package deepzoomer;
 
-import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
-import de.nrw.hbz.deepzoomer.util.DziResult;
-
 import org.apache.log4j.Logger;
 import org.junit.Test;
+
+import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
+import de.nrw.hbz.deepzoomer.util.DziResult;
 
 /**
  * @author aquast

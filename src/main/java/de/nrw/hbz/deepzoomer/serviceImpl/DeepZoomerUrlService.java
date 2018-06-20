@@ -3,10 +3,7 @@
  */
 package de.nrw.hbz.deepzoomer.serviceImpl;
 
-import org.apache.log4j.Logger;
-
-import de.nrw.hbz.deepzoomer.fileUtil.FileUtil;
-import de.nrw.hbz.deepzoomer.util.DziResult;
+import java.io.File;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -16,13 +13,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.xmlbeans.XmlException;
-import org.apache.xmlbeans.XmlObject;
+import org.apache.log4j.Logger;
 
 import com.sun.jersey.api.json.JSONWithPadding;
 
-import java.io.File;
-import java.io.IOException;
+import de.nrw.hbz.deepzoomer.fileUtil.FileUtil;
+import de.nrw.hbz.deepzoomer.util.DziResult;
 
 
 
