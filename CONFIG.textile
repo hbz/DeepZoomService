@@ -41,7 +41,7 @@ sudo echo '<?xml version="1.0" encoding="UTF-8"?>
 	docBase="/usr/share/tomcat7-dzdata/dzdata" 
 	antiResourceLocking="false" privileged="true" />' >> /etc/tomcat7/Catalina/localhost/dzdata.xml
 
-h3. 3. Change deepzoom.cfg accordingly
+h3. 3. Change deepzoomer.cfg accordingly
 
 pre.. # config file for the hbz deepzoomer Service based on 
 # VIPS
