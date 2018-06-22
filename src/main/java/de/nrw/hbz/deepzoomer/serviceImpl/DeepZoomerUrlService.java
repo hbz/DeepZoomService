@@ -38,6 +38,24 @@ import java.net.URL;
 public class DeepZoomerUrlService {
 	// Initiate Logger for PilotRunner
 	private static Logger log = Logger.getLogger(DeepZoomerUrlService.class);
+	
+	/**
+	 * Method to check if url given with parameter imageUrl matches the 
+	 * domainRestriction in deepzoomer.cfg if one is set there
+	 * CHECKME: return type is not set static here as i understand that it otherwise would be be a class variable? (Bjoern)
+	 */
+	private boolean validateUrl (String imageUrl) {
+		SourceValidator sVal= new SourceValidator(imageUrl);
+		boolean allowed = false;
+		try {
+			allowed = sVal.checkUrl();
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			log.error("Domain not valid");
+		}
+		return allowed;
+	}
 
 	//  Jersey annotated Methods 	
 
@@ -51,18 +69,8 @@ public class DeepZoomerUrlService {
 	@Produces({MediaType.APPLICATION_JSON})
 	public DziResult getDZI(@QueryParam("imageUrl") String imageUrl){
 		
-		DziResult dziRes = null;		
-		SourceValidator sVal= new SourceValidator(imageUrl);
-		
-		boolean allowed = false;
-		try {
-			allowed = sVal.checkUrl();
-			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			log.error("Domain not valid");
-		}
-		
+		DziResult dziRes = null;
+		boolean allowed = validateUrl(imageUrl);
 		if (allowed == true) {
 			dziRes = getDziResult(imageUrl);
 			return dziRes;
@@ -85,8 +93,13 @@ public class DeepZoomerUrlService {
 	public JSONWithPadding getDZIJsonP(
 			@QueryParam("callback") @DefaultValue("fn") String callback,
 			@QueryParam("imageUrl") String imageUrl) {
-
-		return new JSONWithPadding(getDziResult(imageUrl), callback);
+		
+		boolean allowed = validateUrl(imageUrl);
+		if (allowed == true) {
+			return new JSONWithPadding(getDziResult(imageUrl), callback);
+		} else {
+			return null;
+		}
 	}
 	
 	

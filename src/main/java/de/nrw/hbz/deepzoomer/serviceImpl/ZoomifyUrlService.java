@@ -5,6 +5,7 @@ package de.nrw.hbz.deepzoomer.serviceImpl;
 
 import org.apache.log4j.Logger;
 import de.nrw.hbz.deepzoomer.fileUtil.FileUtil;
+import de.nrw.hbz.deepzoomer.fileUtil.SourceValidator;
 import de.nrw.hbz.deepzoomer.util.ZoomifyResult;
 
 import javax.ws.rs.DefaultValue;
@@ -22,7 +23,8 @@ import com.sun.jersey.api.json.JSONWithPadding;
 
 import java.io.File;
 import java.io.IOException;
-
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 /**
@@ -34,6 +36,24 @@ import java.io.IOException;
 public class ZoomifyUrlService {
 	// Initiate Logger for PilotRunner
 	private static Logger log = Logger.getLogger(ZoomifyUrlService.class);
+	
+	/**
+	 * Method to check if url given with parameter imageUrl matches the 
+	 * domainRestriction in deepzoomer.cfg if one is set there
+	 * CHECKME: return type is not set static here as i understand that it otherwise would be be a class variable? (Bjoern)
+	 */
+	private boolean validateUrl (String imageUrl) {
+		SourceValidator sVal= new SourceValidator(imageUrl);
+		boolean allowed = false;
+		try {
+			allowed = sVal.checkUrl();
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			log.error("Domain not valid");
+		}
+		return allowed;
+	}
 
 	//  Jersey annotated Methods 	
 
@@ -48,8 +68,13 @@ public class ZoomifyUrlService {
 	public ZoomifyResult getZmf(@QueryParam("imageUrl") String imageUrl){
 		
 		ZoomifyResult zmiRes = null;		
-		zmiRes = getZoomifyResult(imageUrl);
-		return zmiRes;
+		boolean allowed = validateUrl(imageUrl);
+		if (allowed == true) {
+			zmiRes = getZoomifyResult(imageUrl);
+			return zmiRes;
+		} else {
+			return null;
+		}
 	}
 	
 	/**
@@ -66,7 +91,12 @@ public class ZoomifyUrlService {
 			@QueryParam("callback") @DefaultValue("fn") String callback,
 			@QueryParam("imageUrl") String imageUrl) {
 
-		return new JSONWithPadding(getZoomifyResult(imageUrl), callback);
+		boolean allowed = validateUrl(imageUrl);
+		if (allowed == true) {
+			return new JSONWithPadding(getZoomifyResult(imageUrl), callback);
+		} else {
+			return null;
+		}
 	}
 	
 	
