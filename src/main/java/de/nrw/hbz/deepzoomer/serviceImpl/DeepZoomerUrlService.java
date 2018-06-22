@@ -6,6 +6,7 @@ package de.nrw.hbz.deepzoomer.serviceImpl;
 import org.apache.log4j.Logger;
 
 import de.nrw.hbz.deepzoomer.fileUtil.FileUtil;
+import de.nrw.hbz.deepzoomer.fileUtil.SourceValidator;
 import de.nrw.hbz.deepzoomer.util.DziResult;
 
 import javax.ws.rs.DefaultValue;
@@ -23,6 +24,8 @@ import com.sun.jersey.api.json.JSONWithPadding;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 
 
@@ -49,6 +52,15 @@ public class DeepZoomerUrlService {
 	public DziResult getDZI(@QueryParam("imageUrl") String imageUrl){
 		
 		DziResult dziRes = null;		
+		SourceValidator sVal= new SourceValidator(imageUrl);
+		
+		try {
+			sVal.checkUrl();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			log.error("Domain not valid");
+		}
+		
 		dziRes = getDziResult(imageUrl);
 		return dziRes;
 	}

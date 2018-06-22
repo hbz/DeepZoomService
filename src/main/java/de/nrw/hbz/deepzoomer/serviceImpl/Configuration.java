@@ -36,6 +36,8 @@ public class Configuration {
 
 	static String resultDirPath = null;
 	static String tempDirPath = null;
+	
+	static String domainRestriction = null;
 
 	static{
 		initLog();
@@ -47,6 +49,7 @@ public class Configuration {
 		setDataUrl();
 		setResultDirUrl();
 		setTempDirUrl();
+		setDomainRestriction();
 	}
 
 	private static void setDefaultProp(){
@@ -85,17 +88,23 @@ public class Configuration {
 	}
 
 	private static void setResultDirPath(){
-		//resultDirPath = System.getProperty("user.dir") + sysProp.getProperty("resultDir") + "/";
 		resultDirPath = sysProp.getProperty("workingDir") 
 				+ sysProp.getProperty("wdPath") + "/" + sysProp.getProperty("resultDir") + "/";
 	}
 
 	private static void setTempDirPath(){
-		//tempDirPath = System.getProperty("user.dir") + sysProp.getProperty("tempDir") + "/";
 		tempDirPath = sysProp.getProperty("workingDir") 
 				+ sysProp.getProperty("wdPath") + "/" + sysProp.getProperty("tempDir") + "/";
 	}
 
+	private static void setDomainRestriction(){
+		if (sysProp.getProperty("domainRestriction") != null && !sysProp.getProperty("domainRestriction").isEmpty()) {
+			
+				domainRestriction = sysProp.getProperty("domainRestriction");
+		}
+	}
+
+	
 	public static void loadConfigurationFile(){
         sysProp = new Properties(defProp);
         try {
@@ -172,6 +181,10 @@ public class Configuration {
 
 	public static String getUserDir(){
 		return sysProp.getProperty("userDir");
+	}
+
+	public static String getDomainRestriction(){
+		return sysProp.getProperty("domainRestriction");
 	}
 
 }
