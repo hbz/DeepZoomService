@@ -37,24 +37,6 @@ public class ZoomifyUrlService {
 	// Initiate Logger for PilotRunner
 	private static Logger log = Logger.getLogger(ZoomifyUrlService.class);
 	
-	/**
-	 * Method to check if url given with parameter imageUrl matches the 
-	 * domainRestriction in deepzoomer.cfg if one is set there
-	 * CHECKME: return type is not set static here as i understand that it otherwise would be be a class variable? (Bjoern)
-	 */
-	private boolean validateUrl (String imageUrl) {
-		SourceValidator sVal= new SourceValidator(imageUrl);
-		boolean allowed = false;
-		try {
-			allowed = sVal.checkUrl();
-			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			log.error("Domain not valid");
-		}
-		return allowed;
-	}
-
 	//  Jersey annotated Methods 	
 
 	/**
@@ -68,17 +50,12 @@ public class ZoomifyUrlService {
 	public ZoomifyResult getZmf(@QueryParam("imageUrl") String imageUrl){
 		
 		ZoomifyResult zmiRes = null;		
-		boolean allowed = validateUrl(imageUrl);
-		if (allowed == true) {
-			zmiRes = getZoomifyResult(imageUrl);
-			return zmiRes;
-		} else {
-			return null;
-		}
+		zmiRes = getZoomifyResult(imageUrl);
+		return zmiRes;
 	}
 	
 	/**
-	 * GET-implementation of getDzi-Service. Returns OpenSeadragon liable dzi-Format 
+	 * GET-implementation of getDzi-Service. Returns OpenLayers liable zoomify-Format 
 	 * as JSONP
 	 *  
 	 * @param callback
@@ -87,28 +64,30 @@ public class ZoomifyUrlService {
 	 */
 	@GET
 	@Produces({"application/x-javascript", MediaType.APPLICATION_JSON})
-	public JSONWithPadding getDZIJsonP(
+	public JSONWithPadding getZMFJsonP(
 			@QueryParam("callback") @DefaultValue("fn") String callback,
 			@QueryParam("imageUrl") String imageUrl) {
 
-		boolean allowed = validateUrl(imageUrl);
-		if (allowed == true) {
-			return new JSONWithPadding(getZoomifyResult(imageUrl), callback);
-		} else {
-			return null;
-		}
+		return new JSONWithPadding(getZoomifyResult(imageUrl), callback);
 	}
 	
 	
 	/**
-	 * Main method to call VipsRunner for MapTiles creation and call DziResult for 
-	 * the dzi-response required by OpenSeadragon
+	 * Main method to call VipsRunner for MapTiles creation and call ZoomifyResult for 
+	 * the zoomify-response required by OpenLayers
 	 *   
 	 * @param imageUrl
 	 * @return
 	 */
 	private ZoomifyResult getZoomifyResult(String imageUrl){
 		ZoomifyResult zmf = null;
+		
+		// test if domain is allowed
+		boolean allowed = validateDomain(imageUrl); 
+		if (allowed != true) {
+			zmf = new ZoomifyResult();
+			return zmf;
+		}
 		
 		String pathName = imageUrl.replaceAll("\\W", "").replace("https", "")
 				.replace("http", "").replace("file", "");
@@ -125,5 +104,23 @@ public class ZoomifyUrlService {
 		}
 		zmf =  new ZoomifyResult(pathName);
 		return zmf;
+	}
+	
+	/**
+	 * Method to check if imageUrl matches the domain set in
+	 * domainRestriction in deepzoomer.cfg if any
+	 * TODO: move me into SourceValidator
+	 */
+	private boolean validateDomain (String imageUrl) {
+		SourceValidator sVal= new SourceValidator(imageUrl);
+		boolean allowed = false;
+		try {
+			allowed = sVal.checkUrl();
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			log.error("Domain not valid");
+		}
+		return allowed;
 	}
 }
