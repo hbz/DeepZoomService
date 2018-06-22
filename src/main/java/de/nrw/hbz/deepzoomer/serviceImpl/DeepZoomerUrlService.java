@@ -54,15 +54,22 @@ public class DeepZoomerUrlService {
 		DziResult dziRes = null;		
 		SourceValidator sVal= new SourceValidator(imageUrl);
 		
+		boolean allowed = false;
 		try {
-			sVal.checkUrl();
+			allowed = sVal.checkUrl();
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			log.error("Domain not valid");
 		}
 		
-		dziRes = getDziResult(imageUrl);
-		return dziRes;
+		if (allowed == true) {
+			dziRes = getDziResult(imageUrl);
+			return dziRes;
+		} else {
+			return null;
+		}
+		
 	}
 	
 	/**
