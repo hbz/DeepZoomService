@@ -85,13 +85,17 @@ public class ZoomifyUrlService {
 		log.info(pathName);
 		if (new File(Configuration.getResultDirPath()+ pathName + "/ImageProperties.xml").isFile()){
 			//nothing to do here
-			log.debug("use cached DeepZoom-Images");
+			log.info("use cached DeepZoom-Images");
 		} else {
-			log.debug("create new DeepZoom-Images");
-			log.info(FileUtil.saveUrlToFile(pathName, imageUrl));
+			log.info("create new DeepZoom-Images");
+			try {
+				FileUtil.saveUrlToFile(pathName, imageUrl);
+			} catch (Exception e) {
+				log.error(e.getMessage());
+				VipsRunner vips = new VipsRunner();
+				vips.executeVips("--layout zoomify", pathName);
+			}
 			
-			VipsRunner vips = new VipsRunner();
-			vips.executeVips("--layout zoomify", pathName);
 		}
 		zmf =  new ZoomifyResult(pathName);
 		return zmf;

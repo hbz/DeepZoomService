@@ -241,7 +241,7 @@ public class FileUtil {
 	 * @param url
 	 * @return 
 	 */
-	public static String saveUrlToFile(String fileName, String url){
+	public static String saveUrlToFile(String fileName, String url) throws Exception {
 		File inputFile = new File(Configuration.getTempDirPath() +"/" + fileName);
 		log.debug(inputFile.getAbsolutePath());
 		InputStream is = null;
@@ -250,8 +250,12 @@ public class FileUtil {
 		FileOutputStream fos = null;
 		
 		log.info(url);
-		try{
-			URL inputDocument = new URL(url);
+		
+		ImgSourceUrl isu = new ImgSourceUrl();
+		URL inputDocument;
+		inputDocument = isu.getSourceUrl(url);
+
+		try {
 			is = inputDocument.openStream();
 			bis = new BufferedInputStream(is);
 
@@ -263,7 +267,7 @@ public class FileUtil {
 			}
 			bos.flush();
 		}catch(Exception e){
-			log.error(e);
+			log.error(e.getMessage());
 		}finally{
 			if(bos != null){
 				try{

@@ -6,7 +6,7 @@ package de.nrw.hbz.deepzoomer.serviceImpl;
 import org.apache.log4j.Logger;
 
 import de.nrw.hbz.deepzoomer.fileUtil.FileUtil;
-import de.nrw.hbz.deepzoomer.fileUtil.SourceValidator;
+import de.nrw.hbz.deepzoomer.fileUtil.ImgSourceUrl;
 import de.nrw.hbz.deepzoomer.util.DziResult;
 
 import javax.ws.rs.DefaultValue;
@@ -51,25 +51,10 @@ public class DeepZoomerUrlService {
 	@Produces({MediaType.APPLICATION_JSON})
 	public DziResult getDZI(@QueryParam("imageUrl") String imageUrl){
 		
-		DziResult dziRes = null;		
-		SourceValidator sVal= new SourceValidator(imageUrl);
-		
-		boolean allowed = false;
-		try {
-			allowed = sVal.checkUrl();
-			
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			log.error("Domain not valid");
-		}
-		
-		if (allowed == true) {
-			dziRes = getDziResult(imageUrl);
-			return dziRes;
-		} else {
-			return null;
-		}
-		
+		DziResult dziRes = null;
+		dziRes = getDziResult(imageUrl);
+		return dziRes;
+	
 	}
 	
 	/**
@@ -102,16 +87,24 @@ public class DeepZoomerUrlService {
 		
 		String fileName = imageUrl.replaceAll("\\W", "").replace("https", "")
 				.replace("http", "").replace("file", "");
-		log.info(fileName);
 		if (new File(Configuration.getResultDirPath()+ fileName + ".dzi").isFile()){
 			//nothing to do here
-			log.debug("use cached DeepZoom-Images");
+			log.info("use cached DeepZoom-Images");
 		} else {
-			log.debug("create new DeepZoom-Images");
-			log.info(FileUtil.saveUrlToFile(fileName, imageUrl));
+			log.info("create new DeepZoom-Images");
+
+			try {
+				FileUtil.saveUrlToFile(fileName, imageUrl);
+				VipsRunner vips = new VipsRunner();
+				vips.executeVips("", fileName);
+
+			} catch (Exception e) {
+				log.error(e.getMessage());
+				//VipsRunner vips = new VipsRunner();
+				//vips.executeVips("", "request-error.png");
+				
+			}
 			
-			VipsRunner vips = new VipsRunner();
-			vips.executeVips("", fileName);
 		}
 		dzi =  new DziResult(fileName);
 		return dzi;
