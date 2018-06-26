@@ -18,10 +18,17 @@
     <servlet-name>jspExampleClient</servlet-name>
     <jsp-file>/jsp/example.jsp</jsp-file>
   </servlet>
-    <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>jspExampleClient</servlet-name>
     <url-pattern>/example/*</url-pattern>
   </servlet-mapping>
-  
+   <servlet>
+    <servlet-name>jspExampleClient</servlet-name>
+    <jsp-file>/jsp/viewer.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>jspExampleClient</servlet-name>
+    <url-pattern>/viewer/*</url-pattern>
+  </servlet-mapping>
   
 </web-app>

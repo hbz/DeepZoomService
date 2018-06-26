@@ -3,22 +3,18 @@
  */
 package de.nrw.hbz.deepzoomer.util;
 
-import javax.xml.bind.*;
-import javax.xml.bind.util.*;
+import java.io.File;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.helpers.*;
 
 import org.apache.log4j.Logger;
 
-import de.nrw.hbz.deepzoomer.zoomify.IMAGEPROPERTIES;
 import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Hashtable;
+import de.nrw.hbz.deepzoomer.zoomify.IMAGEPROPERTIES;
 
 /**
  * @author aquast
@@ -26,17 +22,6 @@ import java.util.Hashtable;
  */
 @XmlRootElement(name = "IMAGE_PROPERTIES", namespace = "")
 public class ZoomifyResult {
-
-	public ZoomifyResult() {
-
-	}
-
-	public ZoomifyResult(String parsePathName) {
-
-		parseProperties(parsePathName);
-
-	}
-
 	// Initiate Logger for TestRestClient
 	private static Logger log = Logger.getLogger(ZoomifyResult.class);
 
@@ -47,17 +32,17 @@ public class ZoomifyResult {
 	private String Height = null;
 	private String Width = null;
 
-	private void parseProperties(String parsePathName) {
-
+	public ZoomifyResult() {}
+	
+	public ZoomifyResult(String path) {
 		String contextPath = "de.nrw.hbz.deepzoomer.zoomify";
 		JAXBContext jCon = null;
 		try {
 			jCon = JAXBContext.newInstance(contextPath);
 			Unmarshaller jConUn = jCon.createUnmarshaller();
-
 			IMAGEPROPERTIES zmiObj = (IMAGEPROPERTIES) jConUn
-					.unmarshal(new File(Configuration.getResultDirPath() + parsePathName + "/ImageProperties.xml"));
-			Url = Configuration.getResultDirUrl() + parsePathName;
+					.unmarshal(new File(Configuration.properties.getProperty("tilesDir")+File.separator + path + "/ImageProperties.xml"));
+			Url = Configuration.properties.getProperty("resultUrl") +"/"+ path;
 			TileSize = zmiObj.getTILESIZE();
 			Height = zmiObj.getHEIGHT();
 			Width = zmiObj.getWIDTH();

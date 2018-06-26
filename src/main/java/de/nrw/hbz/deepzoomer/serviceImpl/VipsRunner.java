@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-
 import org.apache.log4j.Logger;
 
 /**
@@ -39,8 +38,8 @@ public class VipsRunner {
 				);
 		String executeString = new String(programPath + " " 
 				+ defaultParams 
-				+ " " + Configuration.getTempDirPath() + fileName 
-				+ " " + Configuration.getResultDirPath() + fileName
+				+ " " + Configuration.properties.getProperty("tempDir") + File.separator + fileName 
+				+ " " + Configuration.properties.getProperty("tilesDir") + File.separator + fileName
 				+ " " + paramString
 				); 
 
@@ -65,8 +64,8 @@ public class VipsRunner {
 			log.error(Exc);
 		}finally{
 			//unlink temp file
-			if(new File(Configuration.getTempDirPath() + fileName).isFile()){
-				new File(Configuration.getTempDirPath() + fileName).delete();
+			if(new File(Configuration.properties.getProperty("tempDir") + File.separator + fileName).isFile()){
+				new File(Configuration.properties.getProperty("tilesDir") + fileName).delete();
 			}
 			
 		}

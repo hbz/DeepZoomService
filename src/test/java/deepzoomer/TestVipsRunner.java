@@ -4,12 +4,13 @@
 package deepzoomer;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
-import de.nrw.hbz.deepzoomer.fileUtil.FileUtil;
-import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 import de.nrw.hbz.deepzoomer.serviceImpl.VipsRunner;
 
 /**
@@ -27,17 +28,20 @@ public class TestVipsRunner {
 		String paramString = "";
 		String fileName = "sagrada_familia.png";
 		File testFile = new File("src/test/resources/sagrada_familia.png");
-		String url = "file://" + testFile.getAbsolutePath();
-		copyTestFile(fileName, url);
+		String from =  testFile.getAbsolutePath();
+		copyTestFile(from,fileName);
 		VipsRunner vips = new VipsRunner();
 		vips.executeVips(paramString, fileName);
 		log.info("VipsRunnerTest");
 	}
 	
 	
-	private void copyTestFile(String fileName, String url){
-		FileUtil.saveUrlToFile(fileName, url); 
-
+	private void copyTestFile(String from, String to){
+		try {
+			Files.copy( new File(from).toPath(), new File(to).toPath(), StandardCopyOption.REPLACE_EXISTING );
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	/**

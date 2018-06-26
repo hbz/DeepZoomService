@@ -45,14 +45,7 @@ public class TestConfiguration {
 	@Test
 	public void testConfiguration(){
 
-		//Configuration conf = new Configuration();
-		//Configuration.initLog();
-		log.info(Configuration.getTempDirUrl());
-		log.info(Configuration.getResultDirUrl());
-		log.info(Configuration.getTempDirPath());
-		log.info(Configuration.getResultDirPath());
-		log.info(Configuration.getWorkingDir());
-		log.info(System.getProperty("user.dir"));
+	
 	}
 	
 	/**

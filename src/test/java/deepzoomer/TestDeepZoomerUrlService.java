@@ -6,12 +6,9 @@ package deepzoomer;
 import java.io.File;
 
 import org.apache.log4j.Logger;
-import org.junit.Test;
 
 import de.nrw.hbz.deepzoomer.fileUtil.FileUtil;
-import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 import de.nrw.hbz.deepzoomer.serviceImpl.DeepZoomerUrlService;
-import de.nrw.hbz.deepzoomer.serviceImpl.VipsRunner;
 import de.nrw.hbz.deepzoomer.util.DziResult;
 
 /**
