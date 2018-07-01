@@ -38,7 +38,7 @@ import java.net.URL;
 public class DeepZoomerUrlService {
 	// Initiate Logger for PilotRunner
 	private static Logger log = Logger.getLogger(DeepZoomerUrlService.class);
-
+	
 	//  Jersey annotated Methods 	
 
 	/**
@@ -54,7 +54,6 @@ public class DeepZoomerUrlService {
 		DziResult dziRes = null;
 		dziRes = getDziResult(imageUrl);
 		return dziRes;
-	
 	}
 	
 	/**
@@ -70,7 +69,7 @@ public class DeepZoomerUrlService {
 	public JSONWithPadding getDZIJsonP(
 			@QueryParam("callback") @DefaultValue("fn") String callback,
 			@QueryParam("imageUrl") String imageUrl) {
-
+		
 		return new JSONWithPadding(getDziResult(imageUrl), callback);
 	}
 	
@@ -84,6 +83,13 @@ public class DeepZoomerUrlService {
 	 */
 	private DziResult getDziResult(String imageUrl){
 		DziResult dzi = null;
+		
+		// test if domain is allowed
+		boolean allowed = validateDomain(imageUrl); 
+		if (allowed != true) {
+			dzi = new DziResult();
+			return dzi;
+		}
 		
 		String fileName = imageUrl.replaceAll("\\W", "").replace("https", "")
 				.replace("http", "").replace("file", "");
@@ -109,4 +115,23 @@ public class DeepZoomerUrlService {
 		dzi =  new DziResult(fileName);
 		return dzi;
 	}
+	
+	/**
+	 * Method to check if imageUrl matches the domain set in
+	 * domainRestriction in deepzoomer.cfg if any
+	 * TODO: move me into SourceValidator
+	 */
+	private boolean validateDomain (String imageUrl) {
+		SourceValidator sVal= new SourceValidator(imageUrl);
+		boolean allowed = false;
+		try {
+			allowed = sVal.checkUrl();
+			
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			log.error("Domain not valid");
+		}
+		return allowed;
+	}
+	
 }
