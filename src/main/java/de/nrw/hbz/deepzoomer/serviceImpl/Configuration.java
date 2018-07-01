@@ -24,7 +24,7 @@ public class Configuration {
 	
 
 	// Initialize logger object 
-	private static Logger log = Logger.getLogger(Configuration.class);
+	private static Logger log = Logger.getLogger(de.nrw.hbz.deepzoomer.serviceImpl.Configuration.class);
 
 	private static Properties defProp = new Properties();
 	private static Properties sysProp = null;
@@ -100,7 +100,7 @@ public class Configuration {
 	private static void setDomainRestriction(){
 		if (sysProp.getProperty("domainRestriction") != null && !sysProp.getProperty("domainRestriction").isEmpty()) {
 			
-				domainRestriction = sysProp.getProperty("domainRestriction");
+				domainRestriction = sysProp.getProperty("domainRestriction");				
 		}
 	}
 

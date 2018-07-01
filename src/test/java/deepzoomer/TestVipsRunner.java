@@ -36,7 +36,12 @@ public class TestVipsRunner {
 	
 	
 	private void copyTestFile(String fileName, String url){
-		FileUtil.saveUrlToFile(fileName, url); 
+		try {
+			FileUtil.saveUrlToFile(fileName, url);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 
 	}
 	
