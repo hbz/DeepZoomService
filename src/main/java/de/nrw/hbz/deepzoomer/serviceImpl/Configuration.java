@@ -38,6 +38,7 @@ public class Configuration {
 	static String tempDirPath = null;
 	
 	static String domainRestriction = null;
+	static String connectionTimeout = null;
 
 	static{
 		initLog();
@@ -50,6 +51,7 @@ public class Configuration {
 		setResultDirUrl();
 		setTempDirUrl();
 		setDomainRestriction();
+		setConnectionTimeout();
 	}
 
 	private static void setDefaultProp(){
@@ -102,6 +104,14 @@ public class Configuration {
 			
 				domainRestriction = sysProp.getProperty("domainRestriction");				
 		}
+	}
+
+	private static void setConnectionTimeout(){
+			if (sysProp.getProperty("connectionTimeout") != null && !sysProp.getProperty("connectionTimeout").isEmpty()) {
+				
+					connectionTimeout = sysProp.getProperty("connectionTimeout");				
+			}
+
 	}
 
 	
@@ -186,5 +196,9 @@ public class Configuration {
 	public static String getDomainRestriction(){
 		return sysProp.getProperty("domainRestriction");
 	}
+
+	public static String getConnectionTimeout() {
+		return  sysProp.getProperty("connectionTimeout");
+	};
 
 }
