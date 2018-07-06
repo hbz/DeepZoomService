@@ -78,13 +78,19 @@ public class DeepZoomerUrlService {
 		log.info(fileName);
 		if (new File(Configuration.properties.getProperty("tilesDir") + File.separator + fileName + ".dzi").isFile()) {
 			// nothing to do here
-			log.debug("use cached DeepZoom-Images");
+			log.info("use cached DeepZoom-Images");
 		} else {
-			log.debug("create new DeepZoom-Images");
-			log.info(FileUtil.saveUrlToFile(fileName, imageUrl));
-
-			VipsRunner vips = new VipsRunner();
-			vips.executeVips("", fileName);
+			String resultFileName = FileUtil.saveUrlToFile(fileName, imageUrl);
+			if(resultFileName.equals(fileName)) {
+				log.info("create new DeepZoom-Images");
+				VipsRunner vips = new VipsRunner();
+				vips.executeVips("", fileName);
+			} else {
+				// provide a default error image if something fails here
+				getDziResult(Configuration.properties.getProperty("serviceUrl") + "/" + resultFileName);
+				fileName = (Configuration.properties.getProperty("serviceUrl") + "/" + resultFileName)
+						.replaceAll("\\W", "").replace("https", "").replace("http", "").replace("file", "");
+			}
 		}
 		dzi = new DziResult(fileName);
 		return dzi;

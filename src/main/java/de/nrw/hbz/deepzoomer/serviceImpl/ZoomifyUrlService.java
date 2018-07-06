@@ -84,11 +84,18 @@ public class ZoomifyUrlService {
 			//nothing to do here
 			log.debug("use cached DeepZoom-Images");
 		} else {
-			log.debug("create new DeepZoom-Images");
-			log.info(FileUtil.saveUrlToFile(pathName, imageUrl));
-			
-			VipsRunner vips = new VipsRunner();
-			vips.executeVips("--layout zoomify", pathName);
+			String resultPathName = FileUtil.saveUrlToFile(pathName, imageUrl);
+			if(resultPathName.equals(pathName)) {
+				FileUtil.saveUrlToFile(pathName, imageUrl);
+				VipsRunner vips = new VipsRunner();
+				vips.executeVips("--layout zoomify", pathName);
+			} else {
+				// provide a default error image if something fails here
+				getZoomifyResult(Configuration.properties.getProperty("serviceUrl") + "/" + resultPathName);
+				pathName = (Configuration.properties.getProperty("serviceUrl") + "/" + resultPathName)
+						.replaceAll("\\W", "").replace("https", "").replace("http", "").replace("file", "");
+			}
+				
 		}
 		zmf =  new ZoomifyResult(pathName);
 		return zmf;
