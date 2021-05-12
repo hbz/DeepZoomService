@@ -35,6 +35,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.log4j.Logger;
+
 import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 
 /**
@@ -52,27 +54,39 @@ import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
  *
  */
 public class FileUtil {
+
+	private static Logger log = Logger.getLogger(FileUtil.class);
+	
 	/**
 	 * <p>
 	 * <em>Title: Create a temporary File from a file identified by URL</em>
 	 * </p>
 	 * <p>
 	 * Description: Method creates a temporary file from a remote file addressed
-	 * an by URL representing the orginal PDF, that should be converted
+	 * an by URL representing the remote file, that should be converted
 	 * </p>
 	 * 
 	 * @param fileName
 	 * @param url
 	 * @return
+	 * @throws Exception 
 	 */
 	public static String saveUrlToFile(String fileName, String url) {
+		
+		String errorFileName = "example_img/request-error.png";
 		try {
+			if(DomainWhiteListChecker.existsWhiteList()) {
+				DomainWhiteListChecker.check(url);
+			}
 			File inputFile = new File(Configuration.properties.getProperty("tempDir") + "/" + fileName);
 			Files.copy(getInputStreamFromUrl(new URL(url)), Paths.get(inputFile.toURI()), StandardCopyOption.REPLACE_EXISTING);
 			return inputFile.getName();
 		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
+			log.error(e.getMessage());
+			//throw new RuntimeException();
+			return errorFileName;
+		} 
+
 	}
 
 	private static InputStream getInputStreamFromUrl(URL url) throws IOException {
@@ -86,8 +100,21 @@ public class FileUtil {
 		InputStream inputStream = null;
 		try {
 			con = (HttpURLConnection) url.openConnection();
-			con.setConnectTimeout(15000);
-			con.setReadTimeout(15000);
+			if(Configuration.properties.getProperty("connectionTimeout") != null 
+					&& Configuration.properties.getProperty("connectionTimeout").isEmpty() == false) {
+				con.setConnectTimeout(Integer.parseInt(Configuration.properties.getProperty("connectionTimeout").trim()));
+				log.info("use configuration for timeout");
+			} else {
+				con.setConnectTimeout(15000);
+			}
+			
+			if(Configuration.properties.getProperty("readTimeout") != null 
+					&& Configuration.properties.getProperty("readTimeout").isEmpty() == false) {
+				con.setReadTimeout(Integer.parseInt(Configuration.properties.getProperty("readTimeout").trim()));
+				log.info("use configuration for timeout");
+			} else {
+				con.setReadTimeout(15000);
+			}
 			if (args != null) {
 				for (Entry<String, String> e : args.entrySet()) {
 					con.setRequestProperty(e.getKey(), e.getValue());
