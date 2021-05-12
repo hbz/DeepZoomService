@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 import de.nrw.hbz.deepzoomer.util.ZoomifyResult;
+import junit.framework.Assert;
 
 /**
  * @author aquast
@@ -26,20 +27,6 @@ public class TestZoomifyResult {
 			String testPathName = "src/test/resources/zoomify";
 			ZoomifyResult zmi = new ZoomifyResult(testPathName);
 			log.info(zmi.toString());
+			Assert.assertNotNull(zmi);
 		}
-	
-	/**
-	 * <p><em>Title: </em></p>
-	 * <p>Description: </p>
-	 * 
-	 * @param args 
-	 */
-	public static void main(String[] args) {
-		//Configuration.initLog();
-		TestZoomifyResult zmiResult= new TestZoomifyResult();
-		
-
-	}
-
-
 }

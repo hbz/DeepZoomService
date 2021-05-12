@@ -3,8 +3,6 @@
  * Author: Andres Quast, quast@hbz-nrw.de
  */
 
-$(document).ready(getImageUrl);
-
 var serviceUrl = "http://localhost:8080/deepzoom/api/getDzi?imageUrl=";
 var callbackString = "&callback=?";
 var imageUrl = "http://localhost/opensd/Bambusgarten.png";
@@ -14,13 +12,13 @@ var tileSourcesFn;
 
 function getImageUrl() {
 
-	$('#openseadragon1').dialog({
+	$("#openseadragon1").dialog({
 		modal: true,
 		autoOpen: false,
 		height: ($(window).height() - 60),
 		width: ($(window).width() - 60),
 		buttons: {
-			Ok: function() {
+			Ok () {
 				$(this).dialog("close");
 			}
 		}
@@ -98,10 +96,9 @@ $("input.dz_image_url").each(function() {
 
 });
 
-
-
-
-
 }
+
+$(document).ready(getImageUrl);
+
 
 

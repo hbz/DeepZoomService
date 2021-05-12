@@ -1,6 +1,6 @@
 function getDziName() {
 
-  var viewer = OpenSeadragon({
+  var viewer = openSeadragon({
     id: "openseadragon1",
     prefixUrl: "openseadragon-bin-2.0.0/images/",
     tileSources: [{ Image: { Url: "http://192.168.178.30/opensd/Grenzbaude2400_files/" } }],
@@ -12,7 +12,7 @@ function getDziName() {
 
     jQuery(this).click(function() {
       viewer.destroy();
-      viewer = OpenSeadragon({
+      viewer = openSeadragon({
         id: "openseadragon1",
         prefixUrl: "openseadragon-bin-2.0.0/images/",
         tileSources: dziName + ".dzi",

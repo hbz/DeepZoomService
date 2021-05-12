@@ -10,11 +10,11 @@ div {
 
 div.local {
   color: #d0ffd0;
-  background: #333333;
+  background: #333;
   font-family: Sans Serif, sans-serif;
   font-size: 14pt;
   margin: 8%;
-  clear: both
+  clear: both;
 }
 
 div.local h1 {
@@ -29,7 +29,7 @@ div.local table {
 
 div.local td {
   color: #d0ffd0;
-  padding: 1em
+  padding: 1em;
 }
 
 div.local img {
