@@ -11,11 +11,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 @Path("/tiles")
 public class TilesService {
-	private static Logger log = Logger.getLogger(TilesService.class);
+	private static Logger log = LogManager.getLogger(TilesService.class);
 
 	@GET
 	@Path("{path : .+}")

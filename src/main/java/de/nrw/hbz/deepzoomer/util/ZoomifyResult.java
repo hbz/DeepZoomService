@@ -11,7 +11,8 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 import de.nrw.hbz.deepzoomer.zoomify.IMAGEPROPERTIES;
@@ -23,7 +24,7 @@ import de.nrw.hbz.deepzoomer.zoomify.IMAGEPROPERTIES;
 @XmlRootElement(name = "IMAGE_PROPERTIES", namespace = "")
 public class ZoomifyResult {
 	// Initiate Logger for TestRestClient
-	private static Logger log = Logger.getLogger(ZoomifyResult.class);
+	private static Logger log = LogManager.getLogger(ZoomifyResult.class);
 
 	// private String xmlns = "http://schemas.microsoft.com/deepzoom/2008";
 	private String Url = null;

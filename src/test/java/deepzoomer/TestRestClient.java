@@ -22,7 +22,8 @@
  */
 package deepzoomer;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -30,6 +31,7 @@ import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 
 import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
+
 
 /**
  * Class TestRestClient
@@ -44,7 +46,7 @@ import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 public class TestRestClient {
 
 	// Initiate Logger for TestRestClient
-	private static Logger log = Logger.getLogger(TestRestClient.class);
+	private static Logger log = LogManager.getLogger(TestRestClient.class);
 	
 	private String uri = Configuration.properties.getProperty("resultUrl");
 	
