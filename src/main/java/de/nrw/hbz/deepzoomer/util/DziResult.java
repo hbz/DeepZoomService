@@ -33,7 +33,7 @@ public class DziResult {
 	private String Format = null;
 	private String Overlap = null;
 	private String TileSize = null;
-	ArrayList<Size> Size = new ArrayList<Size>();
+	private ArrayList<Size> Size = new ArrayList<Size>();
 
 	public DziResult() {
 
@@ -167,9 +167,6 @@ public class DziResult {
 	}
 
 	public static class Size {
-		public Size() {
-
-		}
 
 		String Width = null;
 		String Height = null;

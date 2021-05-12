@@ -14,6 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.junit.Test;
 
 import de.nrw.hbz.deepzoomer.serviceImpl.VipsRunner;
+import junit.framework.Assert;
 
 /**
  * @author aquast
@@ -25,7 +26,7 @@ public class TestVipsRunner {
 	private static Logger log = LogManager.getLogger(TestVipsRunner.class);
 
 	@Test
-	public void TestVips(){
+	public void testVips(){
 		
 		String paramString = "";
 		String fileName = "sagrada_familia.png";
@@ -35,6 +36,7 @@ public class TestVipsRunner {
 		VipsRunner vips = new VipsRunner();
 		vips.executeVips(paramString, fileName);
 		log.info("VipsRunnerTest");
+		Assert.assertEquals(vips.getExitStateStr(), "1");
 	}
 	
 	
@@ -42,7 +44,7 @@ public class TestVipsRunner {
 		try {
 			Files.copy( new File(from).toPath(), new File(to).toPath(), StandardCopyOption.REPLACE_EXISTING );
 		} catch (IOException e) {
-			throw new RuntimeException(e);
+			log.error(e.getMessage());
 		}
 	}
 	
@@ -52,7 +54,7 @@ public class TestVipsRunner {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		TestVipsRunner tVips = new TestVipsRunner();
-		tVips.TestVips();
+		tVips.testVips();
 
 	}
 

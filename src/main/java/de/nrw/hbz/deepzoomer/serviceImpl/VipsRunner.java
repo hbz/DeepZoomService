@@ -34,9 +34,8 @@ public class VipsRunner {
 		// call to execute VIPS
 		
 		// Complete execute String 
-		String programPath = new String("vips"); 
-		String defaultParams = new String("dzsave " 
-				);
+		String programPath = "vips"; 
+		String defaultParams = "dzsave ";
 		String executeString = new String(programPath + " " 
 				+ defaultParams 
 				+ " " + Configuration.properties.getProperty("tempDir") + File.separator + fileName 
@@ -47,7 +46,7 @@ public class VipsRunner {
 		log.info("The execute String: " + executeString);
 		try{
 			//Process proc = java.lang.Runtime.getRuntime().exec("echo " + executeString);
-			Process proc = java.lang.Runtime.getRuntime().exec(executeString);
+			Process proc = Runtime.getRuntime().exec(executeString);
 			int exitState = proc.waitFor();
 			InputStream stout = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stout);

@@ -26,7 +26,7 @@ function getImageUrl() {
 		}
 	});
 
-};
+}
 
 $("li.dz_image_url").each(function() {
 	$(this).attr("style", "cursor: pointer;");
