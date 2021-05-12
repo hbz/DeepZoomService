@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.nrw.hbz</groupId>
@@ -25,7 +26,7 @@
 				<version>2.3</version>
 				<configuration>
 					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
-					<packagingExcludes>WEB-INF/lib/servlet-api-2.3.jar</packagingExcludes>
+					<packagingExcludes>WEB-INF/lib/servlet-api-2.5.jar</packagingExcludes>
 					<warName>deepzoom</warName>
 				</configuration>
 				<executions>
@@ -39,10 +40,14 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.8</version>
-			<type>jar</type>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.14.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.14.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -65,8 +70,11 @@
 			<artifactId>jersey-json</artifactId>
 			<version>1.17.1</version>
 		</dependency>
-
-
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>

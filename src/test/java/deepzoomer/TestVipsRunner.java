@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import org.junit.Test;
 
 import de.nrw.hbz.deepzoomer.serviceImpl.VipsRunner;
@@ -20,7 +22,7 @@ import de.nrw.hbz.deepzoomer.serviceImpl.VipsRunner;
 public class TestVipsRunner {
 
 	// Initialize logger object 
-	private static Logger log = Logger.getLogger(TestVipsRunner.class);
+	private static Logger log = LogManager.getLogger(TestVipsRunner.class);
 
 	@Test
 	public void TestVips(){

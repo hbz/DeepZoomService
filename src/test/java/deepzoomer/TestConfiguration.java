@@ -22,10 +22,9 @@
  */
 package deepzoomer;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.junit.Test;
-
-import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 
 /**
  * Class TestConfiguration
@@ -40,7 +39,7 @@ import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 public class TestConfiguration {
 
 	// Initiate Logger for TestConfiguration
-	private static Logger log = Logger.getLogger(TestConfiguration.class);
+	private static Logger log = LogManager.getLogger(TestConfiguration.class);
 
 	@Test
 	public void testConfiguration(){
@@ -58,6 +57,7 @@ public class TestConfiguration {
 
 		TestConfiguration testConf = new TestConfiguration();
 		testConf.testConfiguration();
+		log.info("use static main method from TestConfiguration");
 		
 		
 		

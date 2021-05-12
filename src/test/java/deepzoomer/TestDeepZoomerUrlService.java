@@ -5,7 +5,9 @@ package deepzoomer;
 
 import java.io.File;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 
 import de.nrw.hbz.deepzoomer.fileUtil.FileUtil;
 import de.nrw.hbz.deepzoomer.serviceImpl.DeepZoomerUrlService;
@@ -18,7 +20,7 @@ import de.nrw.hbz.deepzoomer.util.DziResult;
 public class TestDeepZoomerUrlService {
 
 	// Initialize logger object 
-	private static Logger log = Logger.getLogger(TestDeepZoomerUrlService.class);
+	private static Logger log = LogManager.getLogger(TestDeepZoomerUrlService.class);
 
 	//@Test
 	public void TestGetDzi(){

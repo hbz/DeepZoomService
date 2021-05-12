@@ -3,7 +3,9 @@
  */
 package deepzoomer;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import org.junit.Test;
 
 import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
@@ -16,7 +18,7 @@ import de.nrw.hbz.deepzoomer.util.ZoomifyResult;
 public class TestZoomifyResult {
 
 	// Initiate Logger for TestRestClient
-	private static Logger log = Logger.getLogger(TestZoomifyResult.class);
+	private static Logger log = LogManager.getLogger(TestZoomifyResult.class);
 	
 		@Test
 		public void getDziResult(){

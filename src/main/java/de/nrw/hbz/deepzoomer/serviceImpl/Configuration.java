@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import org.apache.log4j.PropertyConfigurator;
-
 /**
  * @author aquast
  *
@@ -43,7 +41,8 @@ public class Configuration {
 	 * @author Andres Quast
 	 */
 	public static void initLog() {
-		PropertyConfigurator.configure(new Configuration().readLogProperties());
+		// PropertyConfigurator.configure(new Configuration().readLogProperties());
+		
 	}
 
 	/**

@@ -13,7 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.sun.jersey.api.json.JSONWithPadding;
 
@@ -30,7 +31,7 @@ import de.nrw.hbz.deepzoomer.util.ZoomifyResult;
 @Path("/getZoomify")
 public class ZoomifyUrlService {
 	// Initiate Logger for PilotRunner
-	private static Logger log = Logger.getLogger(ZoomifyUrlService.class);
+	private static Logger log = LogManager.getLogger(ZoomifyUrlService.class);
 
 	//  Jersey annotated Methods 	
 
