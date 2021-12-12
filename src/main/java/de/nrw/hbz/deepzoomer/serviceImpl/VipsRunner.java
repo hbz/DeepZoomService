@@ -19,7 +19,7 @@ public class VipsRunner {
 	// Initiate Logger for PilotRunner
 	private static Logger log = LogManager.getLogger(VipsRunner.class);
 	
-	private String exitStateStr= null; 	
+	private String exitStateStr= "-1"; 	
 	private String stoutStr = null;
 	
 	/**

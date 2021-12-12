@@ -32,7 +32,7 @@ public class TestVipsRunner {
 		String fileName = "sagrada_familia.png";
 		File testFile = new File("src/test/resources/sagrada_familia.png");
 		String from =  testFile.getAbsolutePath();
-		copyTestFile(from,fileName);
+		copyTestFile(from, fileName);
 		VipsRunner vips = new VipsRunner();
 		vips.executeVips(paramString, fileName);
 		log.info("VipsRunnerTest");
