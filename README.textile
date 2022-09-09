@@ -4,6 +4,8 @@ The hbz DeepZoom-Tool implements a RESTful service generates, caches and provide
 
 The DeepZoom-Tool uses VIPS as pyramidal tiles generator. 
 
+!https://api.codacy.com/project/badge/Grade/41f660c3f7da486891a752677baa1c38(Codacy Badge)!:https://app.codacy.com/gh/hbz/DeepZoomService?utm_source=github.com&utm_medium=referral&utm_content=hbz/DeepZoomService&utm_campaign=Badge_Grade_Settings
+
 h1. Install
 
 h2. Prerequisites

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
-  <display-name>de.nrw.hbz.deepzoomer.serviceImpl</display-name>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://Java.sun.com/xml/ns/javaee" xmlns:web="http://Java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <servlet>
-    <servlet-name>DeepZoomer REST Service</servlet-name>
+    <servlet-name>DeepZoomer REST Service Starter</servlet-name>
     <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
     <init-param>
       <param-name>com.sun.jersey.config.property.packages</param-name>
@@ -11,7 +10,7 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DeepZoomer REST Service</servlet-name>
+    <servlet-name>DeepZoomer REST Service API</servlet-name>
     <url-pattern>/api/*</url-pattern>
   </servlet-mapping>
   <servlet>
@@ -23,11 +22,11 @@
     <url-pattern>/example/*</url-pattern>
   </servlet-mapping>
    <servlet>
-    <servlet-name>jspExampleClient</servlet-name>
+    <servlet-name>jspExampleViewer</servlet-name>
     <jsp-file>/jsp/viewer.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
-    <servlet-name>jspExampleClient</servlet-name>
+    <servlet-name>jspExampleViewer</servlet-name>
     <url-pattern>/viewer/*</url-pattern>
   </servlet-mapping>
   

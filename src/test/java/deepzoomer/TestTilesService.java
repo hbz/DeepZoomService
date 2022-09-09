@@ -12,7 +12,7 @@ import de.nrw.hbz.deepzoomer.serviceImpl.TilesService;
 public class TestTilesService {
 
 	@Test
-	public void test_succeed() {
+	public void testSucceed() {
 		java.nio.file.Path tilesDir = Paths.get(Configuration.properties.getProperty("tilesDir"));
 		java.nio.file.Path p = Paths.get(tilesDir + File.separator + "0/0_0.jpeg");
 		System.out.println(tilesDir +" | "+p);
@@ -20,7 +20,7 @@ public class TestTilesService {
 	}
 	
 	@Test
-	public void test_mustFail() {
+	public void testMustFail() {
 		java.nio.file.Path tilesDir = Paths.get(Configuration.properties.getProperty("tilesDir"));
 		java.nio.file.Path p = Paths.get(tilesDir + File.separator + "../../../etc/passwd");
 		System.out.println(tilesDir +" | "+p);

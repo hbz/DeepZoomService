@@ -76,8 +76,7 @@
 			<p>Create your own mashup by providing an remote Image Url</p>
 			<form action="">
 				<h3>Insert Image Url</h3>
-				<input class="dz_image_url" type="url" size="30 name="
-					image_url" value="<%=Configuration.properties.getProperty("serviceUrl")%>/example_img/sagrada_portal.png"></input>
+				<input class="dz_image_url" type="url" size="30" name="image_url" value="<%=Configuration.properties.getProperty("serviceUrl")%>/example_img/sagrada_portal.png"></input>
 				<input type="submit"></input>
 			</form>
 		</div>

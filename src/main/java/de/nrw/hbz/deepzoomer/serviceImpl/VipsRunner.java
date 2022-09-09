@@ -8,7 +8,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 /**
  * @author aquast
@@ -16,7 +17,7 @@ import org.apache.log4j.Logger;
  */
 public class VipsRunner {
 	// Initiate Logger for PilotRunner
-	private static Logger log = Logger.getLogger(VipsRunner.class);
+	private static Logger log = LogManager.getLogger(VipsRunner.class);
 	
 	private String exitStateStr= null; 	
 	private String stoutStr = null;
@@ -33,9 +34,8 @@ public class VipsRunner {
 		// call to execute VIPS
 		
 		// Complete execute String 
-		String programPath = new String("vips"); 
-		String defaultParams = new String("dzsave " 
-				);
+		String programPath = "vips"; 
+		String defaultParams = "dzsave ";
 		String executeString = new String(programPath + " " 
 				+ defaultParams 
 				+ " " + Configuration.properties.getProperty("tempDir") + File.separator + fileName 
@@ -46,7 +46,7 @@ public class VipsRunner {
 		log.info("The execute String: " + executeString);
 		try{
 			//Process proc = java.lang.Runtime.getRuntime().exec("echo " + executeString);
-			Process proc = java.lang.Runtime.getRuntime().exec(executeString);
+			Process proc = Runtime.getRuntime().exec(executeString);
 			int exitState = proc.waitFor();
 			InputStream stout = proc.getInputStream();
             InputStreamReader isr = new InputStreamReader(stout);

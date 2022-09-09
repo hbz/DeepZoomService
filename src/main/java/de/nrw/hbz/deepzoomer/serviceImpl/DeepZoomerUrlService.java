@@ -13,7 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import com.sun.jersey.api.json.JSONWithPadding;
 
@@ -28,7 +29,7 @@ import de.nrw.hbz.deepzoomer.util.DziResult;
 @Path("/getDzi")
 public class DeepZoomerUrlService {
 	// Initiate Logger for PilotRunner
-	private static Logger log = Logger.getLogger(DeepZoomerUrlService.class);
+	private static Logger log = LogManager.getLogger(DeepZoomerUrlService.class);
 
 	// Jersey annotated Methods
 

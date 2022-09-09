@@ -12,7 +12,8 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import de.nrw.hbz.deepzoomer.dzi.Image;
 import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
@@ -25,14 +26,14 @@ import de.nrw.hbz.deepzoomer.serviceImpl.Configuration;
 public class DziResult {
 
 	// Initiate Logger for TestRestClient
-	private static Logger log = Logger.getLogger(DziResult.class);
+	private static Logger log = LogManager.getLogger(DziResult.class);
 
 	// private String xmlns = "http://schemas.microsoft.com/deepzoom/2008";
 	private String Url = null;
 	private String Format = null;
 	private String Overlap = null;
 	private String TileSize = null;
-	ArrayList<Size> Size = new ArrayList<Size>();
+	private ArrayList<Size> Size = new ArrayList<Size>();
 
 	public DziResult() {
 
@@ -166,9 +167,6 @@ public class DziResult {
 	}
 
 	public static class Size {
-		public Size() {
-
-		}
 
 		String Width = null;
 		String Height = null;
