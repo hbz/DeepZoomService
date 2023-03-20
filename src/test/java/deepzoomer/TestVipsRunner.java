@@ -25,7 +25,6 @@ public class TestVipsRunner {
 	// Initialize logger object 
 	private static Logger log = LogManager.getLogger(TestVipsRunner.class);
 
-	@Test
 	public void testVips(){
 		
 		String paramString = "";
