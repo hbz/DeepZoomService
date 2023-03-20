@@ -1,10 +1,11 @@
+!https://api.codacy.com/project/badge/Grade/41f660c3f7da486891a752677baa1c38(Codacy Badge)!:https://app.codacy.com/gh/hbz/DeepZoomService?utm_source=github.com&utm_medium=referral&utm_content=hbz/DeepZoomService&utm_campaign=Badge_Grade_Settings ![example workflow](https://github.com/hbz/DeepZoomService/actions/workflows/maven.yml/badge.svg)
+
+
 h1. About
 
 The hbz DeepZoom-Tool implements a RESTful service generates, caches and provides pyramidal (deep zoom able) tiles. It provides a JSONP object which can integrated via OpenSeadragen (https://openseadragon.github.io/) into web pages for displaying images in a zoomable format.
 
 The DeepZoom-Tool uses VIPS as pyramidal tiles generator. 
-
-!https://api.codacy.com/project/badge/Grade/41f660c3f7da486891a752677baa1c38(Codacy Badge)!:https://app.codacy.com/gh/hbz/DeepZoomService?utm_source=github.com&utm_medium=referral&utm_content=hbz/DeepZoomService&utm_campaign=Badge_Grade_Settings
 
 h1. Install
 
