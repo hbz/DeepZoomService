@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!--  +++++++++++++++++++++++++++++++++++++++++++++
+This file is one of a suite of tomcats configuration files ...
+  context.xml
+  web.xml
+  tomcat_user.xml
+  server.xml
+
+file provides the context needed for setting up a tilesCache 
+outside the deepzoomer-webapps container 
+
+IMPORTANT: If editing tilesDir and resultUrl within deepzoomer.cfg
+You have to edit this file accordingly!
++++++++++++++++++++++++++++++++++++++++++++++++++++  -->
+
+<Context path="/tiles" docBase="/tmp/deepzoom/tilesCache" ></Context>

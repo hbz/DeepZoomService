@@ -43,7 +43,7 @@ public class TestDeepZoomerUrlService {
 	
 	
 	private void copyTestFile(String fileName, String url){
-		FileUtil.saveUrlToFile(fileName, url); 
+			FileUtil.saveUrlToFile(fileName, url);
 	}
 	
 
